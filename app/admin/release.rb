@@ -1,4 +1,5 @@
 ActiveAdmin.register Release do
+  permit_params 
 
 
   # See permitted parameters documentation:
