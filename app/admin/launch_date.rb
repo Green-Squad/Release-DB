@@ -1,4 +1,5 @@
 ActiveAdmin.register LaunchDate do
+  permit_params :launch_date, :slug
 
 
   # See permitted parameters documentation:
