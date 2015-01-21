@@ -1,4 +1,5 @@
 ActiveAdmin.register Medium do
+  permit_params :name, :slug
 
 
   # See permitted parameters documentation:
