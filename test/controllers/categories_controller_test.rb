@@ -10,5 +10,4 @@ class CategoriesControllerTest < ActionController::TestCase
     get :show, id: categories(:one)
     assert_response :success
   end
-
 end

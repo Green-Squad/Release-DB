@@ -1,7 +1,19 @@
 require 'test_helper'
 
 class RegionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @one = regions(:one)
+  end
+  
+  test "should not create region" do
+    assert_no_difference('Region.count') do
+      Region.create(name: "")
+    end
+  end
+
+  test "should not update region" do
+    name = @one.name
+    @one.update_attributes(name: "")
+    assert_equal name, Region.find(regions(:one)).name
+  end
 end

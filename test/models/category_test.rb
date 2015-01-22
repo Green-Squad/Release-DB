@@ -1,7 +1,20 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  def setup
+    @one = categories(:one)
+  end
+  
+  test "should not create category" do
+    assert_no_difference('Category.count') do
+      Category.create(name: "")
+    end
+  end
+
+  test "should not update category" do
+    name = @one.name
+    @one.update_attributes(name: "")
+    assert_equal name, Category.find(categories(:one)).name
+  end
 end
