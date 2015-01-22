@@ -1,0 +1,9 @@
+<h1><%= @product.name %></h1>
+
+<% @releases.each do |release| %>
+<div>
+  <%= release.region.name %> /
+  <%= release.launch_date.launch_date %> /
+  <%= release.medium.name %>
+</div>
+<% end %>
