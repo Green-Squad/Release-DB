@@ -1,4 +1,6 @@
 class Medium < ActiveRecord::Base
+  include Sluggable
+  
   belongs_to :category
   has_many :releases
   

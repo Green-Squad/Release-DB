@@ -1,4 +1,6 @@
 class LaunchDate < ActiveRecord::Base
+  include Sluggable
+  
   has_many :releases
 
   validates :launch_date, presence: true, uniqueness: { case_sensitive: false }

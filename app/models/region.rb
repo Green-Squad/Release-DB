@@ -1,4 +1,6 @@
 class Region < ActiveRecord::Base
+  include Sluggable
+  
   has_many :releases
 
   validates :name, presence: true

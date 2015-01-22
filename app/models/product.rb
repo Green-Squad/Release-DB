@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  after_create :fix_slug
+  include Sluggable
   
   belongs_to :category
   has_many :releases
@@ -21,9 +21,5 @@ class Product < ActiveRecord::Base
       [:name, self.category.name, :id]
     ]
   end
-  
-  def fix_slug
-    self.slug = nil
-    self.save!
-  end
+
 end

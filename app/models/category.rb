@@ -1,4 +1,6 @@
 class Category < ActiveRecord::Base
+  include Sluggable
+  
   has_many :products
   has_many :media
   
