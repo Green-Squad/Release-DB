@@ -12,10 +12,21 @@
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
-    <ul class="nav navbar-nav">
-    </ul>
+    <ul class="nav navbar-nav"></ul>
     <ul class="nav navbar-nav navbar-right">
-      
+      <% if defined?(Devise) %>
+        <% if admin_user_signed_in? %>
+        <li>
+          <%= link_to "Admin", admin_dashboard_path %>
+        </li>
+        <% end %>
+      <% end %>
+      <li>
+        <%= link_to "Categories", categories_path %>
+      </li>
+      <li>
+        <%= link_to "Products", products_path %>
+      </li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
