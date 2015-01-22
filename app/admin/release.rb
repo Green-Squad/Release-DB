@@ -1,5 +1,5 @@
 ActiveAdmin.register Release do
-  permit_params 
+  permit_params :product_id, :launch_date_id, :medium_id, :region_id
 
 
   # See permitted parameters documentation:

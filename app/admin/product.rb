@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :slug
+  permit_params :name, :slug, :category_id
 
 
   # See permitted parameters documentation:
