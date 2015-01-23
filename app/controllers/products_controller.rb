@@ -41,12 +41,10 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+      if strong_xedit_params(params[:name]) && @product.update_attributes(params[:name] => params[:value])
         format.json { render :show, status: :ok, location: @product }
       else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :bad_request}
       end
     end
   end
@@ -71,5 +69,10 @@ class ProductsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
     params.require(:product).permit(:name, :category_id)
+  end
+
+  def strong_xedit_params(col_name)
+    allowed_names = ['name', 'category_id']
+    allowed_names.include? col_name
   end
 end

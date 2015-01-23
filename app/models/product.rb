@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   has_many :mediums, through: :releases
   
   validates :name, presence: true
-  validates :category_id, presence: true
+  validates :category, presence: true
   validates :slug, uniqueness: { case_sensitive: false }
   
   extend FriendlyId

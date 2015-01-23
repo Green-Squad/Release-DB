@@ -42,6 +42,8 @@ gem 'friendly_id', '~> 5.1.0'
 
 gem 'bundler'
 
+gem 'jquery-turbolinks'
+
 group :development, :test do
   gem 'dotenv-rails'
 end

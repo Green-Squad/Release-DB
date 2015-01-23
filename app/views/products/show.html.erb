@@ -1,5 +1,10 @@
-<h1><%= @product.name %></h1>
+<button id="edit-button" class="btn pull-right">Toggle Edit</button>
 
+<h1><span id="name" class="editable" data-type="text" data-pk="" data-url="/products/<%= @product.id %>"> <%= @product.name %> </span></h1>
+
+<span class="editable" id="category_id" data-value="<%= @product.category.id %>" data-type="select" data-pk="" data-source="/categories.json" data-showbuttons="false" data-url="/products/<%= @product.slug %>"><%= @product.category.name %> </span>
+
+<h2>Releases</h2>
 <% @releases.each do |release| %>
 <div>
   <%= release.region.name %> /
@@ -7,4 +12,3 @@
   <%= release.medium.name %>
 </div>
 <% end %>
-<a href="#" class="editable" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a>
