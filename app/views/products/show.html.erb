@@ -2,13 +2,76 @@
 
 <h1><span id="name" class="editable" data-type="text" data-pk="" data-url="/products/<%= @product.id %>"> <%= @product.name %> </span></h1>
 
-<span class="editable" id="category_id" data-value="<%= @product.category.id %>" data-type="select" data-pk="" data-source="/categories.json" data-showbuttons="false" data-url="/products/<%= @product.slug %>"><%= @product.category.name %> </span>
+<span><%= @product.category.name %> </span>
 
 <h2>Releases</h2>
 <% @releases.each do |release| %>
 <div>
-  <%= release.region.name %> /
-  <%= release.launch_date.launch_date %> /
-  <%= release.medium.name %>
+  <span class="editable" 
+        id="region_id" 
+        data-value="<%= release.region.id %>" 
+        data-type="select" 
+        data-pk="" 
+        data-source="/regions.json" 
+        data-showbuttons="false" 
+        data-url="/releases/<%= release.id %>">
+        <%= release.region.name %>
+  </span> /
+  <span class="editable" 
+        id="launch_date_id" 
+        data-type="text" 
+        data-pk="" 
+        data-url="/releases/<%= release.id %>">
+        <%= release.launch_date.launch_date %>
+  </span> /
+  <span class="editable" 
+        id="medium_id" 
+        data-value="<%= release.medium.id %>" 
+        data-type="select" 
+        data-pk="" 
+        data-source="/media.json?category_id=<%= @product.category.id %>" 
+        data-showbuttons="false" 
+        data-url="/releases/<%= release.id %>">
+        <%= release.medium.name %>
+  </span>
 </div>
 <% end %>
+
+  <div id="msg"></div>
+    <span class="new-release-editable" 
+        id="region_id" 
+        data-type="select" 
+        data-pk="" 
+        data-source="/regions.json" 
+        data-showbuttons="false" 
+        data-send="never">
+  </span> /
+  <span class="new-release-editable" 
+        id="launch_date" 
+        data-type="text" 
+        data-pk="" 
+        data-send="never">
+  </span> /
+  <span class="new-release-editable" 
+        id="medium_id" 
+        data-type="select" 
+        data-pk="" 
+        data-source="/media.json?category_id=<%= @product.category.id %>" 
+        data-showbuttons="false" 
+        data-send="never">
+  </span>
+    <span class="new-release-editable" 
+        id="product_id"
+        data-value="<%= @product.id %>" 
+        data-type="select" 
+        data-pk="" 
+        data-source="/media.json?category_id=<%= @product.category.id %>" 
+        data-showbuttons="false" 
+        data-send="never"
+        style="display:none">
+  </span>
+  
+
+<button id="new-release-save"> 
+  Save new thing
+</button>
