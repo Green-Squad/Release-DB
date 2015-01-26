@@ -36,21 +36,21 @@
   </span>
 </div>
 <% end %>
-
+<div class="new-release-entry">
   <div id="msg"></div>
-    <span class="new-release-editable" 
+  <span class="new-release-editable" 
         id="region_id" 
         data-type="select" 
         data-pk="" 
         data-source="/regions.json" 
         data-showbuttons="false" 
-        data-send="never">
+        data-send="auto">
   </span> /
   <span class="new-release-editable" 
         id="launch_date" 
         data-type="text" 
         data-pk="" 
-        data-send="never">
+        data-send="auto">
   </span> /
   <span class="new-release-editable" 
         id="medium_id" 
@@ -58,20 +58,19 @@
         data-pk="" 
         data-source="/media.json?category_id=<%= @product.category.id %>" 
         data-showbuttons="false" 
-        data-send="never">
+        data-send="auto">
   </span>
-    <span class="new-release-editable" 
+  <span class="new-release-editable" 
         id="product_id"
         data-value="<%= @product.id %>" 
         data-type="select" 
         data-pk="" 
         data-source="/media.json?category_id=<%= @product.category.id %>" 
         data-showbuttons="false" 
-        data-send="never"
+        data-send="auto"
         style="display:none">
   </span>
-  
-
-<button id="new-release-save"> 
-  Save new thing
-</button>
+  <button id="new-release-save"> 
+    Save new thing
+  </button>
+</div>

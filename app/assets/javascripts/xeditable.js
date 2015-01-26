@@ -1,54 +1,57 @@
 $(document).ready(function() {
   $.fn.editable.defaults.mode = 'inline';
-  /* $.fn.editable.defaults.ajaxOptions = {
-  type : "PUT"
+  $.fn.editable.defaults.ajaxOptions = {
+    type : "put"
   };
 
+  //init editables
   $('.editable').editable('disable');
+  $('.new-release-editable').editable();
+  $('.new-release-entry').hide();
 
   $('#edit-button').click(function(e) {
-  $('.editable').editable('toggleDisabled');
-  $('.editable').editable('show', false);
-  e.stopPropagation();
+    $('.editable').editable('toggleDisabled');
+    //$('.editable').editable('show', false);
+    
+    $('.new-release-entry').toggle();
+    $('.new-release-editable').editable('toggleDisabled');
+    //$('.new-release-editable').editable('show', false);
+    
+    e.stopPropagation();
   });
 
   $('.editable').last().on('shown', function(e, editable) {
-  if (arguments.length == 2) {
-  setTimeout(function() {
-  $('.editable-container').find('input').first().focus();
-  }, 0);
-  }
+    if (arguments.length == 2) {
+      setTimeout(function() {
+        $('.editable-container').find('input').first().focus();
+      }, 0);
+    }
   });
-
-  $('#new-release-save').click(function() {
-  $('.new-release-editable').editable('submit', {
-  url : '/releases/new',
-  ajaxOptions : {
-  dataType : 'json' //assuming json response
-  }
-  });
-  });
-  */
-  //init editables
-  $('.new-release-editable').editable();
 
   $('#new-release-save').click(function() {
     $('.new-release-editable').editable('submit', {
       url : '/releases',
       ajaxOptions : {
+        type : 'post',
         dataType : 'json' //assuming json response
       },
       success : function(data, config) {
-        console.log(data)
-        if (data && data.id) {//record created, response like {"id": 2}
+        if (data && data.id) {
+          //record created, response like {"id": 2}
+          //change editable options
+          $(this).editable('option', 'pk', data.id);
+          $(this).editable('option', 'url', '/releases/' + data.id);
+          $(this).editable('option', 'type', 'put');
+
           //remove unsaved class
           $(this).removeClass('editable-unsaved');
+
           //show messages
           var msg = 'New release created!';
           $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
+
+          //hide new release button
           $('#new-release-save').hide();
-          $('.new-release-editable').data('send', 'always');
-          $('.new-release-editable').data('url', '/releases/' + data.id);
         } else if (data && data.errors) {
           //server-side validation error, response like {"errors": {"username": "username already exist"} }
           config.error.call(this, data.errors);
