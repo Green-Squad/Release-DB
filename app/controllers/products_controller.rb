@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  after_action :rollback, only: :update
   # GET /products
   # GET /products.json
   def index
@@ -40,6 +41,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @admin_user = current_admin_user
     respond_to do |format|
       if strong_xedit_params(params[:name]) && @product.update_attributes(params[:name] => params[:value])
         format.json { render :show, status: :ok, location: @product }
@@ -74,5 +76,11 @@ class ProductsController < ApplicationController
   def strong_xedit_params(col_name)
     allowed_names = ['name', 'category_id']
     allowed_names.include? col_name
+  end
+
+  def rollback
+    unless admin_user_signed_in?
+      @product.rollback
+    end
   end
 end

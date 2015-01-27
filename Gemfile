@@ -40,6 +40,10 @@ gem 'spring',        group: :development
 
 gem 'friendly_id', '~> 5.1.0'
 
+gem 'paper_trail'
+
+gem 'protected_attributes'
+
 gem 'bundler'
 
 gem 'jquery-turbolinks'

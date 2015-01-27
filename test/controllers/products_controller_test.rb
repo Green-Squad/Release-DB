@@ -54,7 +54,7 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should not update product" do
-    patch :update, id: @product, product: { name: "" }
+    patch :update, id: @product, product: { name: "" }.to_json, format: :json
     assert_equal "Halo", Product.find(products(:one)).name
   end
 end
