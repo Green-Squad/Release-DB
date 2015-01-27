@@ -5,72 +5,44 @@
 <span><%= @product.category.name %> </span>
 
 <h2>Releases</h2>
-<% @releases.each do |release| %>
-<div>
-  <span class="editable" 
-        id="region_id" 
-        data-value="<%= release.region.id %>" 
-        data-type="select" 
-        data-pk="" 
-        data-source="/regions.json" 
-        data-showbuttons="false" 
-        data-url="/releases/<%= release.id %>">
-        <%= release.region.name %>
-  </span> /
-  <span class="editable" 
-        id="launch_date_id" 
-        data-type="text" 
-        data-pk="" 
-        data-url="/releases/<%= release.id %>">
-        <%= release.launch_date.launch_date %>
-  </span> /
-  <span class="editable" 
-        id="medium_id" 
-        data-value="<%= release.medium.id %>" 
-        data-type="select" 
-        data-pk="" 
-        data-source="/media.json?category_id=<%= @product.category.id %>" 
-        data-showbuttons="false" 
-        data-url="/releases/<%= release.id %>">
-        <%= release.medium.name %>
-  </span>
+<div id="release-list">
+  <% @releases.each do |release| %>
+  <div>
+    <span class="editable" 
+          id="region_id" 
+          data-value="<%= release.region.id %>" 
+          data-type="select" 
+          data-pk="" 
+          data-source="/regions.json" 
+          data-showbuttons="false" 
+          data-url="/releases/<%= release.id %>">
+          <%= release.region.name %>
+    </span> /
+    <span class="editable" 
+          id="launch_date_id" 
+          data-type="text" 
+          data-pk="" 
+          data-url="/releases/<%= release.id %>">
+          <%= release.launch_date.launch_date %>
+    </span> /
+    <span class="editable" 
+          id="medium_id" 
+          data-value="<%= release.medium.id %>" 
+          data-type="select" 
+          data-pk="" 
+          data-source="/media.json?category_id=<%= @product.category.id %>" 
+          data-showbuttons="false" 
+          data-url="/releases/<%= release.id %>">
+          <%= release.medium.name %>
+    </span>
+  </div>
+  <% end %>
+
+  <div class="new-release-entry">
+  
+  </div>
 </div>
+<button id="add-release-button" class="btn" style="display:none">Add Release</button>
+
+<%= content_tag :div, class: "temp_information", data: {category_id: @product.category.id, product_id: @product.id} do %>
 <% end %>
-<div class="new-release-entry">
-  <div id="msg"></div>
-  <span class="new-release-editable" 
-        id="region_id" 
-        data-type="select" 
-        data-pk="" 
-        data-source="/regions.json" 
-        data-showbuttons="false" 
-        data-send="auto">
-  </span> /
-  <span class="new-release-editable" 
-        id="launch_date" 
-        data-type="text" 
-        data-pk="" 
-        data-send="auto">
-  </span> /
-  <span class="new-release-editable" 
-        id="medium_id" 
-        data-type="select" 
-        data-pk="" 
-        data-source="/media.json?category_id=<%= @product.category.id %>" 
-        data-showbuttons="false" 
-        data-send="auto">
-  </span>
-  <span class="new-release-editable" 
-        id="product_id"
-        data-value="<%= @product.id %>" 
-        data-type="select" 
-        data-pk="" 
-        data-source="/media.json?category_id=<%= @product.category.id %>" 
-        data-showbuttons="false" 
-        data-send="auto"
-        style="display:none">
-  </span>
-  <button id="new-release-save"> 
-    Save new thing
-  </button>
-</div>
