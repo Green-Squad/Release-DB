@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150122200805) do
     t.integer  "launch_date_id"
     t.integer  "medium_id"
     t.integer  "region_id"
+    t.text     "source"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

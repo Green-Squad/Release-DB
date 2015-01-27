@@ -5,6 +5,7 @@ class CreateReleases < ActiveRecord::Migration
       t.references :launch_date, index: true
       t.references :medium, index: true
       t.references :region, index: true
+      t.text :source
 
       t.timestamps
     end

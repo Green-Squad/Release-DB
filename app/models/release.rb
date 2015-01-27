@@ -8,6 +8,7 @@ class Release < ActiveRecord::Base
   validates :launch_date_id, presence: true
   validates :medium_id, presence: true
   validates :region_id, presence: true
+  validates :source, presence: true
   #validates :slug, presence: true, uniqueness: { case_sensitive: false }
   
 end

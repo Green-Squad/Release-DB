@@ -8,7 +8,7 @@ $(document).ready(function() {
   //init editables
   $('.editable').editable('disable');
   $('.new-release-entry').hide();
-
+  
   $('#edit-button').click(function(e) {
     $('.editable').editable('toggleDisabled');
     $('.editable').editable('show', false);
@@ -19,7 +19,14 @@ $(document).ready(function() {
     
     
     $('#add-release-button').toggle();
-
+    
+    if($('.hidden-field:hidden').size()) {
+      console.log("showing")
+      $('.hidden-field').show();  
+    } else {
+      $('.hidden-field').hide();
+    }
+    
     
     e.stopPropagation();
   });
@@ -64,7 +71,15 @@ $(document).ready(function() {
           "' " +  
           "data-showbuttons='false' " +  
           "data-send='auto'>" + 
+          "</span>" +
+          "<span class='hidden-field'> / " +
+          "<span class='new-release-editable source' " + 
+          "id='source' " + 
+          "data-placeholder='source' " +
+          "data-type='text' " + 
+          "data-pk=''>" + 
           "</span>" + 
+          "</span>" +
           "<div style='display:none'>" + 
           "<span class='new-release-editable' " +  
           "id='product_id' " + 
@@ -80,13 +95,14 @@ $(document).ready(function() {
           "<button id='new-release-save'>" + 
           "Save" +
           "</button>" +
-          "</div>"
+          "</div>" 
           )
           
           $('.new-release-editable').editable();
           $('.new-release-editable').editable('show', false);
-          
+          $('.hidden-field').show();
           bindClick();
+          setRequired();
       }
   });
   
@@ -94,6 +110,14 @@ $(document).ready(function() {
     var msg = 'Your contribution has been submitted for approval.';
     $('#msg').addClass('alert-success').addClass('alert').removeClass('alert-danger').html(msg).show();
 });
+
+  setRequired = function() {
+    $('.source').editable('option', 'validate', function(v) {
+      if($.trim(v) == '') {
+          return 'This field is required';
+      }
+    });
+  }
 
   bindClick = function() {
     

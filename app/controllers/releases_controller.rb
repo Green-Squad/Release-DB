@@ -69,11 +69,11 @@ class ReleasesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def release_params
-    params.permit(:region_id, :launch_date_id, :medium_id, :product_id)
+    params.permit(:region_id, :launch_date_id, :medium_id, :product_id, :source)
   end
 
   def strong_xedit_params(col_name)
-    allowed_names = ['region_id', 'launch_date_id', 'medium_id']
+    allowed_names = ['region_id', 'launch_date_id', 'medium_id', 'source']
     allowed_names.include? col_name
   end
 end
