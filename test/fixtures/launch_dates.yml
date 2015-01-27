@@ -2,8 +2,8 @@
 
 one:
   launch_date: MyString
-  slug: MyString
+  slug: MyString1
 
 two:
   launch_date: MyString
-  slug: MyString
+  slug: MyString2

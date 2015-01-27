@@ -2,10 +2,10 @@
 
 one:
   name: Halo
-  slug: MyString
+  slug: MyString1
   category_id: 
 
 two:
   name: MyString
-  slug: MyString
+  slug: MyString2
   category_id: 
