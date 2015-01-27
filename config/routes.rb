@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :media
   resources :releases
   
+  resources :approvals, only: :index
+  
   # Admin
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

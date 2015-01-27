@@ -1,0 +1,15 @@
+<h1>Products</h1>
+<table class="table table-striped">
+  <tr>
+    <% @pending_products.first.reify.attributes.each do |attr_name, attr_value| %>
+    <th> <%= attr_name %> </th>
+    <% end %>
+  </tr>
+  <% @pending_products.each do |pending_product| %>
+  <tr>
+    <% pending_product.reify.attributes.each do |attr_name, attr_value| %>
+    <td> <%= attr_value %> </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
