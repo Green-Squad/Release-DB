@@ -5,6 +5,6 @@
 
 module PaperTrail
   class Version < ActiveRecord::Base
-    attr_accessible :status
+    #attr_accessible :status
   end
 end

@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   after_action :rollback, only: :update
+  after_action :destroy_create, only: :create
+  # before_action :paper_trail_off, only: [:create, :update]
+  #after_action :paper_trail_on, only: [:create, :update]
   # GET /products
   # GET /products.json
   def index
@@ -25,6 +28,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    Product.paper_trail_off!
     @product = Product.new(product_params)
 
     respond_to do |format|
@@ -36,12 +40,13 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+    Product.paper_trail_on!
   end
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    @admin_user = current_admin_user
+    Product.paper_trail_off!
     respond_to do |format|
       if strong_xedit_params(params[:name]) && @product.update_attributes(params[:name] => params[:value])
         format.json { render :show, status: :ok, location: @product }
@@ -49,6 +54,7 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :bad_request}
       end
     end
+    Product.paper_trail_on!
   end
 
   # DELETE /products/1
@@ -79,8 +85,26 @@ class ProductsController < ApplicationController
   end
 
   def rollback
-    unless admin_user_signed_in?
+    if admin_user_signed_in?
+      @product.save_after_state
+    else
       @product.rollback
     end
+  end
+
+  def destroy_create
+    if admin_user_signed_in?
+      @product.save_after_state
+    else
+      @product.destroy_create
+    end
+  end
+
+  def paper_trail_off
+    Product.paper_trail_off! if admin_user_signed_in?
+  end
+
+  def paper_trail_on
+    Product.paper_trail_on! if admin_user_signed_in?
   end
 end
