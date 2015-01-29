@@ -1,5 +1,5 @@
 <h1>Products</h1>
-<table class="table table-striped">
+<table class="table approval-table">
   <tr>
     <% if @pending_products.first && @pending_products.first.reify %>
     <% @pending_products.first.reify.attributes.each do |attr_name, attr_value| %>
@@ -19,6 +19,16 @@
     <% end %>
     <td><%= pending_product.event %></td>
     <td><%= link_to "Approve", approvals_approve_path(id: pending_product.id) %> <%= link_to "Reject", approvals_reject_path(id: pending_product.id) %> </td>
+  </tr>
+  <tr>
+    <%  product = Product.find_by_id(pending_product.item_id)
+    if product
+    product.attributes.each do |attr_name, attr_value| %>
+    <td> <%= attr_value %> </td>
+    <% end %>
+    <% end %>
+    <td></td>
+    <td></td>
   </tr>
 
   <% end %>
