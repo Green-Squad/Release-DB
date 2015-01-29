@@ -28,7 +28,7 @@ class Product < ActiveRecord::Base
   end
 
   def rollback
-    previous_version.save
+    PaperTrail::Version.where(item_type: "Product", status: "approved", item_id: id).order(:created_at).last.reify.save
   end
 
   def destroy_create
