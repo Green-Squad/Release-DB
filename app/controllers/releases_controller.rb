@@ -1,5 +1,7 @@
 class ReleasesController < ApplicationController
   before_action :set_release, only: [:show, :edit, :update, :destroy]
+  after_action(only: :update) { rollback @release }
+  after_action(only: :create) { handle_creation @release }
   # GET /releases
   # GET /releases.json
   def index
@@ -23,6 +25,7 @@ class ReleasesController < ApplicationController
   # POST /releases
   # POST /releases.json
   def create
+    Product.paper_trail_off!
     launch_date = LaunchDate.where(launch_date: params[:launch_date]).first_or_create
     params[:launch_date_id] = launch_date.id
     @release = Release.new(release_params)
@@ -36,11 +39,17 @@ class ReleasesController < ApplicationController
         format.json { render json: @release.errors, status: :unprocessable_entity }
       end
     end
+    Product.paper_trail_on!
   end
 
   # PATCH/PUT /releases/1
   # PATCH/PUT /releases/1.json
   def update
+    Product.paper_trail_off!
+    if strong_xedit_params(params[:name]) && params[:name] == 'launch_date_id'
+      params[:value] = LaunchDate.where(launch_date: params[:value]).first_or_create.id
+    end
+    
     respond_to do |format|
       if strong_xedit_params(params[:name]) && @release.update_attributes(params[:name] => params[:value])
         format.json { render :show, status: :ok, location: @release }
@@ -48,6 +57,7 @@ class ReleasesController < ApplicationController
         format.json { render json: @release.errors, status: :bad_request}
       end
     end
+    Product.paper_trail_on!
   end
 
   # DELETE /releases/1

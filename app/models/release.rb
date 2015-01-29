@@ -1,4 +1,5 @@
 class Release < ActiveRecord::Base
+  include Approvable
   belongs_to :product
   belongs_to :launch_date
   belongs_to :medium
@@ -9,6 +10,5 @@ class Release < ActiveRecord::Base
   validates :medium_id, presence: true
   validates :region_id, presence: true
   validates :source, presence: true
-  #validates :slug, presence: true, uniqueness: { case_sensitive: false }
-  
+
 end
