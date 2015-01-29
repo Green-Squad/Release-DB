@@ -1,8 +1,7 @@
 class Product < ActiveRecord::Base
   include Sluggable
-
-  has_paper_trail meta: { status: :set_status },
-                  on: [:update, :destroy]
+  include Approvable
+  
   belongs_to :category
   has_many :releases
   has_many :launch_dates, through: :releases
@@ -27,21 +26,4 @@ class Product < ActiveRecord::Base
     slug.blank? || name_changed?
   end
 
-  def rollback
-    PaperTrail::Version.where(item_type: "Product", status: "approved", item_id: id).order(:created_at).last.reify.save
-  end
-
-  def destroy_create
-    destroy
-  end
-
-  # saves after state of model that admin creates and updates the version attributes to approved
-  def save_after_state
-    update_attributes(updated_at: Time.now)
-    versions.last.update_attributes(status: "approved")
-  end
-
-  def set_status(status = "pending")
-    status
-  end
 end

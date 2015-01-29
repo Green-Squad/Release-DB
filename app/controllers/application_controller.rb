@@ -2,13 +2,29 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
   def user_for_paper_trail
     admin_user_signed_in? ? current_admin_user.id : 'guest'
   end
 
+  def rollback(object)
+    if admin_user_signed_in?
+      object.save_after_state
+    else
+      object.rollback
+    end
+  end
+
+  # Approves for admin, pending otherwise (for create method)
+  def handle_creation(object)
+    if admin_user_signed_in?
+      object.save_after_state
+    else
+      object.destroy
+    end
+  end
+
   private
-  
+
   #-> Prelang (user_login:devise)
   def require_user_signed_in
     unless user_signed_in?

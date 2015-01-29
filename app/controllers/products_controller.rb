@@ -1,9 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  after_action :rollback, only: :update
-  after_action :destroy_create, only: :create
-  # before_action :paper_trail_off, only: [:create, :update]
-  #after_action :paper_trail_on, only: [:create, :update]
+  after_action(only: :update) { rollback @product }
+  after_action(only: :create) { handle_creation @product }
+  
   # GET /products
   # GET /products.json
   def index
@@ -82,29 +81,5 @@ class ProductsController < ApplicationController
   def strong_xedit_params(col_name)
     allowed_names = ['name', 'category_id']
     allowed_names.include? col_name
-  end
-
-  def rollback
-    if admin_user_signed_in?
-      @product.save_after_state
-    else
-      @product.rollback
-    end
-  end
-
-  def destroy_create
-    if admin_user_signed_in?
-      @product.save_after_state
-    else
-      @product.destroy_create
-    end
-  end
-
-  def paper_trail_off
-    Product.paper_trail_off! if admin_user_signed_in?
-  end
-
-  def paper_trail_on
-    Product.paper_trail_on! if admin_user_signed_in?
   end
 end
