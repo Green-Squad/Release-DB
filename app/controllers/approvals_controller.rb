@@ -1,7 +1,9 @@
 class ApprovalsController < ApplicationController
   def index
-    @pending_products = PaperTrail::Version.where(item_type: "Product", status: "pending").order(:created_at)
-    @pending_releases = PaperTrail::Version.where(item_type: "Release", status: "pending")
+    pending_products = PaperTrail::Version.where(item_type: "Product", status: "pending").order(:created_at)
+    pending_releases = PaperTrail::Version.where(item_type: "Release", status: "pending").order(:created_at)
+    
+    @pending_models = {"Product" => pending_products, "Release" => pending_releases}
   end
   
   def approve

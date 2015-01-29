@@ -1,29 +1,30 @@
-<h1>Products</h1>
+<% @pending_models.each do |name,  items|%>
+<h1><%= name.pluralize %></h1>
 <table class="table approval-table">
   <tr>
-    <% if @pending_products.first && @pending_products.first.reify %>
-    <% @pending_products.first.reify.attributes.each do |attr_name, attr_value| %>
+    <% if items.first && items.first.reify %>
+    <% items.first.reify.attributes.each do |attr_name, attr_value| %>
     <th> <%= attr_name %> </th>
     <% end %>
     <% end %>
     <th> Event </th>
     <th> Actions </th>
   </tr>
-  <% @pending_products.each do |pending_product| %>
+  <% items.each do |pending_item| %>
 
   <tr>
-    <% product = pending_product.reify ? pending_product.reify : pending_product %>
+    <% item = pending_item.reify ? pending_item.reify : pending_item %>
 
-    <% product.attributes.each do |attr_name, attr_value| %>
+    <% item.attributes.each do |attr_name, attr_value| %>
     <td> <%= attr_value %> </td>
     <% end %>
-    <td><%= pending_product.event %></td>
-    <td><%= link_to "Approve", approvals_approve_path(id: pending_product.id) %> <%= link_to "Reject", approvals_reject_path(id: pending_product.id) %> </td>
+    <td><%= pending_item.event %></td>
+    <td><%= link_to "Approve", approvals_approve_path(id: pending_item.id) %> <%= link_to "Reject", approvals_reject_path(id: pending_item.id) %> </td>
   </tr>
   <tr>
-    <%  product = Product.find_by_id(pending_product.item_id)
-    if product
-    product.attributes.each do |attr_name, attr_value| %>
+    <%  item = name.constantize.find_by_id(pending_item.item_id)
+    if item
+    item.attributes.each do |attr_name, attr_value| %>
     <td> <%= attr_value %> </td>
     <% end %>
     <% end %>
@@ -33,3 +34,4 @@
 
   <% end %>
 </table>
+<% end %>
