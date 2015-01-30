@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :categories, only: [:index, :show]
+  resources :categories,  only: [:index, :show]
   resources :products
   resources :regions
-  resources :media
+  resources :media,       only: [:index, :show]
   resources :releases
   
   get '/approvals/approve/:id',   to: 'approvals#approve',  as: 'approvals_approve'
