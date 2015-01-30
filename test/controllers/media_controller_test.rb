@@ -16,14 +16,6 @@ class MediaControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create medium" do
-    assert_difference('Medium.count') do
-      post :create, medium: {  }
-    end
-
-    assert_redirected_to medium_path(assigns(:medium))
-  end
-
   test "should show medium" do
     get :show, id: @medium
     assert_response :success

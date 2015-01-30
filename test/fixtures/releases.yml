@@ -5,9 +5,11 @@ one:
   launch_date: one
   medium: one
   region: one
+  source: google.com
 
 two:
-  product_id: 
-  launch_date_id: 
-  medium_id: 
-  region_id: 
+  product: two
+  launch_date: two
+  medium: two
+  region: two
+  source: facebook.com

@@ -16,14 +16,6 @@ class RegionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create region" do
-    assert_difference('Region.count') do
-      post :create, region: {  }
-    end
-
-    assert_redirected_to region_path(assigns(:region))
-  end
-
   test "should show region" do
     get :show, id: @region
     assert_response :success
