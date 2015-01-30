@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   resources :categories,  only: [:index, :show]
   resources :products,    except: [:new, :edit]
-  resources :regions
+  resources :regions,     only: [:index, :show]
   resources :media,       only: [:index, :show]
-  resources :releases
+  resources :releases,    except: [:new, :edit]
   
   get '/approvals/approve/:id',   to: 'approvals#approve',  as: 'approvals_approve'
   get '/approvals/reject/:id',    to: 'approvals#reject',   as: 'approvals_reject'
