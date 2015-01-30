@@ -13,15 +13,6 @@ class ProductsController < ApplicationController
     @releases = @product.releases
   end
 
-  # GET /products/new
-  def new
-    @product = Product.new
-  end
-
-  # GET /products/1/edit
-  def edit
-  end
-
   # POST /products
   # POST /products.json
   def create

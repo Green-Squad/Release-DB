@@ -12,15 +12,6 @@ class ReleasesController < ApplicationController
   def show
   end
 
-  # GET /releases/new
-  def new
-    @release = Release.new
-  end
-
-  # GET /releases/1/edit
-  def edit
-  end
-
   # POST /releases
   # POST /releases.json
   def create
