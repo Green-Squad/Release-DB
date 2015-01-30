@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :categories,  only: [:index, :show]
-  resources :products
+  resources :products,    except: [:new, :edit]
   resources :regions
   resources :media,       only: [:index, :show]
   resources :releases
