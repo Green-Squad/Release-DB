@@ -22,11 +22,11 @@ class ReleasesController < ApplicationController
 
     respond_to do |format|
       if @release.save
-        format.html { redirect_to @release, notice: 'Release was successfully created.' }
+        #format.html { redirect_to @release, notice: 'Release was successfully created.' }
         format.json { render :show, status: :created, location: @release }
         handle_creation @release
       else
-        format.html { render :new }
+        #format.html { render :new }
         format.json { render json: @release.errors, status: :unprocessable_entity }
       end
     end
