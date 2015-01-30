@@ -11,11 +11,6 @@ class ReleasesControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:releases)
   end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
   
   test "should rollback create release as guest" do
     assert_no_difference('Release.count') do
@@ -32,11 +27,6 @@ class ReleasesControllerTest < ActionController::TestCase
 
   test "should show release" do
     get :show, id: @release
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @release
     assert_response :success
   end
 

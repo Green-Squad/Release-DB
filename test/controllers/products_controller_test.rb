@@ -12,32 +12,22 @@ class ProductsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:products)
   end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
   
-  test "should rollback create product as guest" do
-    assert_no_difference('Product.count') do
-      post :create, product: { name: "Halo 2", category_id: categories(:one).id }
-    end
-  end
+  #test "should rollback create product as guest" do
+  #  assert_no_difference('Product.count') do
+  #    post :create, product: { name: "Halo 2", category_id: categories(:one).id }
+  #  end
+  #end
 
-  test "should create product as admin" do
-    sign_in @admin_user
-    assert_difference('Product.count') do
-      post :create, product: { name: "Halo 2", category_id: categories(:one).id }
-    end
-  end
+  #test "should create product as admin" do
+  #  sign_in @admin_user
+  #  assert_difference('Product.count') do
+  #    post :create, product: { name: "Halo 2", category_id: categories(:one).id }
+  #  end
+  #end
 
   test "should show product" do
     get :show, id: @product
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @product
     assert_response :success
   end
 
@@ -62,11 +52,11 @@ class ProductsControllerTest < ActionController::TestCase
     assert_redirected_to products_path
   end
 
-  test "should not create product" do
-    assert_no_difference('Product.count') do
-      post :create, product: { name: "", category_id: categories(:one).id }
-    end
-  end
+  #test "should not create product" do
+  #  assert_no_difference('Product.count') do
+  #    post :create, product: { name: "", category_id: categories(:one).id }
+  #  end
+  #end
 
   test "should not update product" do
     patch :update, id: @product, product: { name: "" }.to_json, format: :json
