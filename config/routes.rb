@@ -8,11 +8,8 @@ Rails.application.routes.draw do
   resources :media
   resources :releases
   
-  get '/approvals',               to: 'approvals#index',    as: 'approvals'
   get '/approvals/approve/:id',   to: 'approvals#approve',  as: 'approvals_approve'
   get '/approvals/reject/:id',    to: 'approvals#reject',   as: 'approvals_reject'
-
-
   
   # Admin
   devise_for :admin_users, ActiveAdmin::Devise.config

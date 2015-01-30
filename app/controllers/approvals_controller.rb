@@ -1,10 +1,5 @@
 class ApprovalsController < ApplicationController
-  def index
-    pending_products = PaperTrail::Version.where(item_type: "Product", status: "pending").order(:created_at)
-    pending_releases = PaperTrail::Version.where(item_type: "Release", status: "pending").order(:created_at)
-    
-    @pending_models = {"Product" => pending_products, "Release" => pending_releases}
-  end
+  before_action :authenticate_admin_user!
   
   def approve
     version = PaperTrail::Version.find_by_id(params[:id])
@@ -18,9 +13,9 @@ class ApprovalsController < ApplicationController
     else
       flash[:error] = "Version #{params[:id]} does not exist or has already been rejected"
     end
-    redirect_to approvals_url
+    redirect_to admin_dashboard_url
   end
-  
+
   def reject
     version = PaperTrail::Version.find(params[:id])
     if (version.status == "approved")
@@ -29,6 +24,6 @@ class ApprovalsController < ApplicationController
       version.destroy
       flash[:info] = "Version #{params[:id]} has been rejected"
     end
-    redirect_to approvals_url
+    redirect_to admin_dashboard_url
   end
 end

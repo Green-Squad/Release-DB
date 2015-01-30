@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  after_action(only: :update) { rollback @product }
-  after_action(only: :create) { handle_creation @product }
   
   # GET /products
   # GET /products.json
@@ -34,6 +32,7 @@ class ProductsController < ApplicationController
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
+        handle_creation @product 
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -49,6 +48,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if strong_xedit_params(params[:name]) && @product.update_attributes(params[:name] => params[:value])
         format.json { render :show, status: :ok, location: @product }
+        rollback @product
       else
         format.json { render json: @product.errors, status: :bad_request}
       end

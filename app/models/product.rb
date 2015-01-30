@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
     [
       :name,
       [:name, self.category.name],
-      [:name, self.category.name, :id]
+      [:name, self.category.name, :id],
     ]
   end
 

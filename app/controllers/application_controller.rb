@@ -7,20 +7,24 @@ class ApplicationController < ActionController::Base
   end
 
   def rollback(object)
+    object.class.name.constantize.paper_trail_on!
     if admin_user_signed_in?
       object.save_after_state
     else
       object.rollback
     end
+    object.class.name.constantize.paper_trail_off!
   end
 
   # Approves for admin, pending otherwise (for create method)
   def handle_creation(object)
+    object.class.name.constantize.paper_trail_on!
     if admin_user_signed_in?
       object.save_after_state
     else
       object.destroy
     end
+    object.class.name.constantize.paper_trail_off!
   end
 
   private
