@@ -48,7 +48,7 @@ gem 'bundler'
 
 gem 'jquery-turbolinks'
 
-gem "recaptcha", :require => "recaptcha/rails"
+gem "recaptcha", github: "ambethia/recaptcha"
 
 group :development, :test do
   gem 'dotenv-rails'
