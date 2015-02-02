@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:name, :category_id)
+    params.permit(:name, :category_id)
   end
 
   def strong_xedit_params(col_name)

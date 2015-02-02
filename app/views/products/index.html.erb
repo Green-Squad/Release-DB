@@ -1,6 +1,16 @@
 <h1>Products</h1>
-<% @products.each do |product| %>
+<div id="product-list">
+  <% @products.each do |product| %>
   <div>
     <%= link_to product.name, product_path(product) %>
   </div>
-<% end %>
+  <% end %>
+
+  <div class="new-product-entry">
+
+  </div>
+</div>
+
+<button id="add-product-button" class="btn btn-primary">
+  Add Product
+</button>

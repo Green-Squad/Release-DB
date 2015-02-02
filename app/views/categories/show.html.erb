@@ -1,6 +1,18 @@
 <h1><%= @category.name %></h1>
-<% @products.each do |product| %>
-   <div>
-     <%= link_to product.name, product_path(product) %>
-   </div>
-<% end %>
+<div id="product-list">
+  <% @products.each do |product| %>
+  <div>
+    <%= link_to product.name, product_path(product) %>
+  </div>
+  <% end %>
+
+  <div class="new-product-entry">
+
+  </div>
+</div>
+
+<button id="add-product-button" class="btn btn-primary">
+  Add Product
+</button>
+
+<%= content_tag :div, class: "temp_information", data: {category_id: @category.id} do end %>

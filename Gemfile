@@ -48,6 +48,8 @@ gem 'bundler'
 
 gem 'jquery-turbolinks'
 
+gem "recaptcha", :require => "recaptcha/rails"
+
 group :development, :test do
   gem 'dotenv-rails'
 end
