@@ -1,17 +1,1195 @@
-/*
- countdown.js v2.4.1 http://countdownjs.org
- Copyright (c)2006-2014 Stephen M. McKamey.
- Licensed under The MIT License.
-*/
-var module,countdown=function(u){function x(a,b){var c=a.getTime();a.setMonth(a.getMonth()+b);return Math.round((a.getTime()-c)/864E5)}function v(a){var b=a.getTime(),c=new Date(b);c.setMonth(a.getMonth()+1);return Math.round((c.getTime()-b)/864E5)}function h(a,b){return a+" "+(1===a?r[b]:t[b])}function n(){}function l(a,b,c,e,f,d){0<=a[c]&&(b+=a[c],delete a[c]);b/=f;if(1>=b+1)return 0;if(0<=a[e]){a[e]=+(a[e]+b).toFixed(d);switch(e){case "seconds":if(60!==a.seconds||isNaN(a.minutes))break;a.minutes++;
-a.seconds=0;case "minutes":if(60!==a.minutes||isNaN(a.hours))break;a.hours++;a.minutes=0;case "hours":if(24!==a.hours||isNaN(a.days))break;a.days++;a.hours=0;case "days":if(7!==a.days||isNaN(a.weeks))break;a.weeks++;a.days=0;case "weeks":if(a.weeks!==v(a.refMonth)/7||isNaN(a.months))break;a.months++;a.weeks=0;case "months":if(12!==a.months||isNaN(a.years))break;a.years++;a.months=0;case "years":if(10!==a.years||isNaN(a.decades))break;a.decades++;a.years=0;case "decades":if(10!==a.decades||isNaN(a.centuries))break;
-a.centuries++;a.decades=0;case "centuries":if(10!==a.centuries||isNaN(a.millennia))break;a.millennia++;a.centuries=0}return 0}return b}function y(a,b,c,e,f,d){var h=new Date;a.start=b=b||h;a.end=c=c||h;a.units=e;a.value=c.getTime()-b.getTime();0>a.value&&(h=c,c=b,b=h);a.refMonth=new Date(b.getFullYear(),b.getMonth(),15,12,0,0);try{a.millennia=0;a.centuries=0;a.decades=0;a.years=c.getFullYear()-b.getFullYear();a.months=c.getMonth()-b.getMonth();a.weeks=0;a.days=c.getDate()-b.getDate();a.hours=c.getHours()-
-b.getHours();a.minutes=c.getMinutes()-b.getMinutes();a.seconds=c.getSeconds()-b.getSeconds();a.milliseconds=c.getMilliseconds()-b.getMilliseconds();var k;0>a.milliseconds?(k=s(-a.milliseconds/1E3),a.seconds-=k,a.milliseconds+=1E3*k):1E3<=a.milliseconds&&(a.seconds+=m(a.milliseconds/1E3),a.milliseconds%=1E3);0>a.seconds?(k=s(-a.seconds/60),a.minutes-=k,a.seconds+=60*k):60<=a.seconds&&(a.minutes+=m(a.seconds/60),a.seconds%=60);0>a.minutes?(k=s(-a.minutes/60),a.hours-=k,a.minutes+=60*k):60<=a.minutes&&
-(a.hours+=m(a.minutes/60),a.minutes%=60);0>a.hours?(k=s(-a.hours/24),a.days-=k,a.hours+=24*k):24<=a.hours&&(a.days+=m(a.hours/24),a.hours%=24);for(;0>a.days;)a.months--,a.days+=x(a.refMonth,1);7<=a.days&&(a.weeks+=m(a.days/7),a.days%=7);0>a.months?(k=s(-a.months/12),a.years-=k,a.months+=12*k):12<=a.months&&(a.years+=m(a.months/12),a.months%=12);10<=a.years&&(a.decades+=m(a.years/10),a.years%=10,10<=a.decades&&(a.centuries+=m(a.decades/10),a.decades%=10,10<=a.centuries&&(a.millennia+=m(a.centuries/
-10),a.centuries%=10)));b=0;!(e&1024)||b>=f?(a.centuries+=10*a.millennia,delete a.millennia):a.millennia&&b++;!(e&512)||b>=f?(a.decades+=10*a.centuries,delete a.centuries):a.centuries&&b++;!(e&256)||b>=f?(a.years+=10*a.decades,delete a.decades):a.decades&&b++;!(e&128)||b>=f?(a.months+=12*a.years,delete a.years):a.years&&b++;!(e&64)||b>=f?(a.months&&(a.days+=x(a.refMonth,a.months)),delete a.months,7<=a.days&&(a.weeks+=m(a.days/7),a.days%=7)):a.months&&b++;!(e&32)||b>=f?(a.days+=7*a.weeks,delete a.weeks):
-a.weeks&&b++;!(e&16)||b>=f?(a.hours+=24*a.days,delete a.days):a.days&&b++;!(e&8)||b>=f?(a.minutes+=60*a.hours,delete a.hours):a.hours&&b++;!(e&4)||b>=f?(a.seconds+=60*a.minutes,delete a.minutes):a.minutes&&b++;!(e&2)||b>=f?(a.milliseconds+=1E3*a.seconds,delete a.seconds):a.seconds&&b++;if(!(e&1)||b>=f){var g=l(a,0,"milliseconds","seconds",1E3,d);if(g&&(g=l(a,g,"seconds","minutes",60,d))&&(g=l(a,g,"minutes","hours",60,d))&&(g=l(a,g,"hours","days",24,d))&&(g=l(a,g,"days","weeks",7,d))&&(g=l(a,g,"weeks",
-"months",v(a.refMonth)/7,d))){e=g;var n,p=a.refMonth,q=p.getTime(),r=new Date(q);r.setFullYear(p.getFullYear()+1);n=Math.round((r.getTime()-q)/864E5);if(g=l(a,e,"months","years",n/v(a.refMonth),d))if(g=l(a,g,"years","decades",10,d))if(g=l(a,g,"decades","centuries",10,d))if(g=l(a,g,"centuries","millennia",10,d))throw Error("Fractional unit overflow");}}}finally{delete a.refMonth}return a}function d(a,b,c,e,d){var h;c=+c||222;e=0<e?e:NaN;d=0<d?20>d?Math.round(d):20:0;"function"===typeof a?(h=a,a=null):
-a instanceof Date||(a=null!==a&&isFinite(a)?new Date(a):null);"function"===typeof b?(h=b,b=null):b instanceof Date||(b=null!==b&&isFinite(b)?new Date(b):null);if(!a&&!b)return new n;if(!h)return y(new n,a,b,c,e,d);var l=c&1?1E3/30:c&2?1E3:c&4?6E4:c&8?36E5:c&16?864E5:6048E5,k,g=function(){h(y(new n,a,b,c,e,d),k)};g();return k=setInterval(g,l)}var s=Math.ceil,m=Math.floor,r,t,p,q,w;n.prototype.toString=function(){var a=w(this),b=a.length;if(!b)return"";1<b&&(a[b-1]=p+a[b-1]);return a.join(q)};n.prototype.toHTML=
-function(a){a=a||"span";var b=w(this),c=b.length;if(!c)return"";for(var d=0;d<c;d++)b[d]="\x3c"+a+"\x3e"+b[d]+"\x3c/"+a+"\x3e";--c&&(b[c]=p+b[c]);return b.join(q)};w=function(a){var b=[],c=a.millennia;c&&b.push(h(c,10));(c=a.centuries)&&b.push(h(c,9));(c=a.decades)&&b.push(h(c,8));(c=a.years)&&b.push(h(c,7));(c=a.months)&&b.push(h(c,6));(c=a.weeks)&&b.push(h(c,5));(c=a.days)&&b.push(h(c,4));(c=a.hours)&&b.push(h(c,3));(c=a.minutes)&&b.push(h(c,2));(c=a.seconds)&&b.push(h(c,1));(c=a.milliseconds)&&
-b.push(h(c,0));return b};d.MILLISECONDS=1;d.SECONDS=2;d.MINUTES=4;d.HOURS=8;d.DAYS=16;d.WEEKS=32;d.MONTHS=64;d.YEARS=128;d.DECADES=256;d.CENTURIES=512;d.MILLENNIA=1024;d.DEFAULTS=222;d.ALL=2047;d.setLabels=function(a,b,c,d){a=a||[];a.split&&(a=a.split("|"));b=b||[];b.split&&(b=b.split("|"));for(var f=0;10>=f;f++)r[f]=a[f]||r[f],t[f]=b[f]||t[f];p="string"===typeof c?c:p;q="string"===typeof d?d:q};(d.resetLabels=function(){r="millisecond second minute hour day week month year decade century millennium".split(" ");
-t="milliseconds seconds minutes hours days weeks months years decades centuries millennia".split(" ");p="and ";q=", "})();u&&u.exports?u.exports=d:"function"===typeof window.define&&"undefined"!==typeof window.define.amd&&window.define("countdown",[],function(){return d});return d}(module);
+/*global window */
+/**
+ * @license countdown.js v2.4.1 http://countdownjs.org
+ * Copyright (c)2006-2014 Stephen M. McKamey.
+ * Licensed under The MIT License.
+ * Modified from original source
+ */
+/*jshint bitwise:false */
+
+/**
+ * @public
+ * @type {Object|null}
+ */
+var module;
+
+/**
+ * API entry
+ * @public
+ * @param {function(Object)|Date|number} start the starting date
+ * @param {function(Object)|Date|number} end the ending date
+ * @param {number} units the units to populate
+ * @return {Object|number}
+ */
+var countdown = (
+
+/**
+ * @param {Object} module CommonJS Module
+ */
+function(module) {
+  /*jshint smarttabs:true */
+
+  'use strict';
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MILLISECONDS  = 0x001;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var SECONDS     = 0x002;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MINUTES     = 0x004;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var HOURS     = 0x008;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var DAYS      = 0x010;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var WEEKS     = 0x020;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MONTHS      = 0x040;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var YEARS     = 0x080;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var DECADES     = 0x100;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var CENTURIES   = 0x200;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MILLENNIA   = 0x400;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var DEFAULTS    = YEARS|MONTHS|DAYS|HOURS|MINUTES|SECONDS;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MILLISECONDS_PER_SECOND = 1000;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var SECONDS_PER_MINUTE = 60;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MINUTES_PER_HOUR = 60;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var HOURS_PER_DAY = 24;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MILLISECONDS_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MILLISECONDS_PER_SECOND;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var DAYS_PER_WEEK = 7;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var MONTHS_PER_YEAR = 12;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var YEARS_PER_DECADE = 10;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var DECADES_PER_CENTURY = 10;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var CENTURIES_PER_MILLENNIUM = 10;
+
+  /**
+   * @private
+   * @param {number} x number
+   * @return {number}
+   */
+  var ceil = Math.ceil;
+
+  /**
+   * @private
+   * @param {number} x number
+   * @return {number}
+   */
+  var floor = Math.floor;
+
+  /**
+   * @private
+   * @param {Date} ref reference date
+   * @param {number} shift number of months to shift
+   * @return {number} number of days shifted
+   */
+  function borrowMonths(ref, shift) {
+    var prevTime = ref.getTime();
+
+    // increment month by shift
+    ref.setMonth( ref.getMonth() + shift );
+
+    // this is the trickiest since months vary in length
+    return Math.round( (ref.getTime() - prevTime) / MILLISECONDS_PER_DAY );
+  }
+
+  /**
+   * @private
+   * @param {Date} ref reference date
+   * @return {number} number of days
+   */
+  function daysPerMonth(ref) {
+    var a = ref.getTime();
+
+    // increment month by 1
+    var b = new Date(a);
+    b.setMonth( ref.getMonth() + 1 );
+
+    // this is the trickiest since months vary in length
+    return Math.round( (b.getTime() - a) / MILLISECONDS_PER_DAY );
+  }
+
+  /**
+   * @private
+   * @param {Date} ref reference date
+   * @return {number} number of days
+   */
+  function daysPerYear(ref) {
+    var a = ref.getTime();
+
+    // increment year by 1
+    var b = new Date(a);
+    b.setFullYear( ref.getFullYear() + 1 );
+
+    // this is the trickiest since years (periodically) vary in length
+    return Math.round( (b.getTime() - a) / MILLISECONDS_PER_DAY );
+  }
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_MILLISECONDS  = 0;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_SECONDS   = 1;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_MINUTES   = 2;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_HOURS     = 3;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_DAYS      = 4;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_WEEKS     = 5;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_MONTHS    = 6;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_YEARS     = 7;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_DECADES   = 8;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_CENTURIES   = 9;
+
+  /**
+   * @private
+   * @const
+   * @type {number}
+   */
+  var LABEL_MILLENNIA   = 10;
+
+  /**
+   * @private
+   * @type {Array}
+   */
+  var LABELS_SINGLUAR;
+
+  /**
+   * @private
+   * @type {Array}
+   */
+  var LABELS_PLURAL;
+
+  /**
+   * @private
+   * @type {string}
+   */
+  var LABEL_LAST;
+
+  /**
+   * @private
+   * @type {string}
+   */
+  var LABEL_DELIM;
+
+  /**
+   * @private
+   * @param {number} value
+   * @param {number} unit unit index into label list
+   * @return {string}
+   */
+  function plurality(value, unit) {
+    return value+' '+((value === 1) ? LABELS_SINGLUAR[unit] : LABELS_PLURAL[unit]);
+  }
+
+  /**
+   * Formats the entries as English labels
+   * 
+   * @private
+   * @param {Timespan} ts
+   * @return {Array}
+   */
+  var formatList;
+
+  /**
+   * Timespan representation of a duration of time
+   * 
+   * @private
+   * @this {Timespan}
+   * @constructor
+   */
+  function Timespan() {}
+
+  /**
+   * Formats the Timespan as a sentance
+   * 
+   * @private
+   * @return {string}
+   */
+  Timespan.prototype.toString = function() {
+    var label = formatList(this);
+
+    var count = label.length;
+    if (!count) {
+      return '';
+    }
+    if (count > 1) {
+      label[count-1] = LABEL_LAST+label[count-1];
+    }
+    return label.join(LABEL_DELIM);
+  };
+
+  /**
+   * Formats the Timespan as HTML
+   * 
+   * @private
+   * @param {string} tag HTML tag name to wrap each value
+   * @return {string}
+   */
+  Timespan.prototype.toHTML = function(tag) {
+    //tag = tag || 'span';
+    var label = formatList(this);
+    var count = label.length;
+    var returnString = "";
+    if (count) {
+      var years = this.years;
+      var months = this.months;
+      var days = this.days;
+      var hours = this.hours;
+      var minutes = this.minutes;
+      var seconds = this.seconds;
+
+      if (years == 1) {
+        returnString += years + " year ";
+      } else if (years > 1) {
+        returnString += years + " years ";
+      }
+
+      if (months == 1) {
+        returnString += months + " month ";
+      } else if (months > 1) {
+        returnString += months + " months ";
+      }
+
+      if (days == 0 || days > 1) {
+        returnString += days + " days ";
+      } else {
+        returnString += days + " day ";
+      }
+
+      returnString += hours + ":" + minutes + ":" + seconds
+    }
+    return returnString;
+  };
+
+  /**
+   * Formats the entries as English labels
+   * 
+   * @private
+   * @param {Timespan} ts
+   * @return {Array}
+   */
+  formatList = function(ts) {
+    var list = [];
+
+    var value = ts.millennia;
+    if (value) {
+      list.push(plurality(value, LABEL_MILLENNIA));
+    }
+
+    value = ts.centuries;
+    if (value) {
+      list.push(plurality(value, LABEL_CENTURIES));
+    }
+
+    value = ts.decades;
+    if (value) {
+      list.push(plurality(value, LABEL_DECADES));
+    }
+
+    value = ts.years;
+    if (value) {
+      list.push(plurality(value, LABEL_YEARS));
+    }
+
+    value = ts.months;
+    if (value) {
+      list.push(plurality(value, LABEL_MONTHS));
+    }
+
+    value = ts.weeks;
+    if (value) {
+      list.push(plurality(value, LABEL_WEEKS));
+    }
+
+    value = ts.days;
+    if (value) {
+      list.push(plurality(value, LABEL_DAYS));
+    }
+
+    value = ts.hours;
+    if (value) {
+      list.push(plurality(value, LABEL_HOURS));
+    }
+
+    value = ts.minutes;
+    if (value) {
+      list.push(plurality(value, LABEL_MINUTES));
+    }
+
+    value = ts.seconds;
+    if (value) {
+      list.push(plurality(value, LABEL_SECONDS));
+    }
+
+    value = ts.milliseconds;
+    if (value) {
+      list.push(plurality(value, LABEL_MILLISECONDS));
+    }
+
+    return list;
+  };
+
+  /**
+   * Borrow any underflow units, carry any overflow units
+   * 
+   * @private
+   * @param {Timespan} ts
+   * @param {string} toUnit
+   */
+  function rippleRounded(ts, toUnit) {
+    switch (toUnit) {
+      case 'seconds':
+        if (ts.seconds !== SECONDS_PER_MINUTE || isNaN(ts.minutes)) {
+          return;
+        }
+        // ripple seconds up to minutes
+        ts.minutes++;
+        ts.seconds = 0;
+
+        /* falls through */
+      case 'minutes':
+        if (ts.minutes !== MINUTES_PER_HOUR || isNaN(ts.hours)) {
+          return;
+        }
+        // ripple minutes up to hours
+        ts.hours++;
+        ts.minutes = 0;
+
+        /* falls through */
+      case 'hours':
+        if (ts.hours !== HOURS_PER_DAY || isNaN(ts.days)) {
+          return;
+        }
+        // ripple hours up to days
+        ts.days++;
+        ts.hours = 0;
+
+        /* falls through */
+      case 'days':
+        if (ts.days !== DAYS_PER_WEEK || isNaN(ts.weeks)) {
+          return;
+        }
+        // ripple days up to weeks
+        ts.weeks++;
+        ts.days = 0;
+
+        /* falls through */
+      case 'weeks':
+        if (ts.weeks !== daysPerMonth(ts.refMonth)/DAYS_PER_WEEK || isNaN(ts.months)) {
+          return;
+        }
+        // ripple weeks up to months
+        ts.months++;
+        ts.weeks = 0;
+
+        /* falls through */
+      case 'months':
+        if (ts.months !== MONTHS_PER_YEAR || isNaN(ts.years)) {
+          return;
+        }
+        // ripple months up to years
+        ts.years++;
+        ts.months = 0;
+
+        /* falls through */
+      case 'years':
+        if (ts.years !== YEARS_PER_DECADE || isNaN(ts.decades)) {
+          return;
+        }
+        // ripple years up to decades
+        ts.decades++;
+        ts.years = 0;
+
+        /* falls through */
+      case 'decades':
+        if (ts.decades !== DECADES_PER_CENTURY || isNaN(ts.centuries)) {
+          return;
+        }
+        // ripple decades up to centuries
+        ts.centuries++;
+        ts.decades = 0;
+
+        /* falls through */
+      case 'centuries':
+        if (ts.centuries !== CENTURIES_PER_MILLENNIUM || isNaN(ts.millennia)) {
+          return;
+        }
+        // ripple centuries up to millennia
+        ts.millennia++;
+        ts.centuries = 0;
+        /* falls through */
+      }
+  }
+
+  /**
+   * Ripple up partial units one place
+   * 
+   * @private
+   * @param {Timespan} ts timespan
+   * @param {number} frac accumulated fractional value
+   * @param {string} fromUnit source unit name
+   * @param {string} toUnit target unit name
+   * @param {number} conversion multiplier between units
+   * @param {number} digits max number of decimal digits to output
+   * @return {number} new fractional value
+   */
+  function fraction(ts, frac, fromUnit, toUnit, conversion, digits) {
+    if (ts[fromUnit] >= 0) {
+      frac += ts[fromUnit];
+      delete ts[fromUnit];
+    }
+
+    frac /= conversion;
+    if (frac + 1 <= 1) {
+      // drop if below machine epsilon
+      return 0;
+    }
+
+    if (ts[toUnit] >= 0) {
+      // ensure does not have more than specified number of digits
+      ts[toUnit] = +(ts[toUnit] + frac).toFixed(digits);
+      rippleRounded(ts, toUnit);
+      return 0;
+    }
+
+    return frac;
+  }
+
+  /**
+   * Ripple up partial units to next existing
+   * 
+   * @private
+   * @param {Timespan} ts
+   * @param {number} digits max number of decimal digits to output
+   */
+  function fractional(ts, digits) {
+    var frac = fraction(ts, 0, 'milliseconds', 'seconds', MILLISECONDS_PER_SECOND, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'seconds', 'minutes', SECONDS_PER_MINUTE, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'minutes', 'hours', MINUTES_PER_HOUR, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'hours', 'days', HOURS_PER_DAY, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'days', 'weeks', DAYS_PER_WEEK, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'weeks', 'months', daysPerMonth(ts.refMonth)/DAYS_PER_WEEK, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'months', 'years', daysPerYear(ts.refMonth)/daysPerMonth(ts.refMonth), digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'years', 'decades', YEARS_PER_DECADE, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'decades', 'centuries', DECADES_PER_CENTURY, digits);
+    if (!frac) { return; }
+
+    frac = fraction(ts, frac, 'centuries', 'millennia', CENTURIES_PER_MILLENNIUM, digits);
+
+    // should never reach this with remaining fractional value
+    if (frac) { throw new Error('Fractional unit overflow'); }
+  }
+
+  /**
+   * Borrow any underflow units, carry any overflow units
+   * 
+   * @private
+   * @param {Timespan} ts
+   */
+  function ripple(ts) {
+    var x;
+
+    if (ts.milliseconds < 0) {
+      // ripple seconds down to milliseconds
+      x = ceil(-ts.milliseconds / MILLISECONDS_PER_SECOND);
+      ts.seconds -= x;
+      ts.milliseconds += x * MILLISECONDS_PER_SECOND;
+
+    } else if (ts.milliseconds >= MILLISECONDS_PER_SECOND) {
+      // ripple milliseconds up to seconds
+      ts.seconds += floor(ts.milliseconds / MILLISECONDS_PER_SECOND);
+      ts.milliseconds %= MILLISECONDS_PER_SECOND;
+    }
+
+    if (ts.seconds < 0) {
+      // ripple minutes down to seconds
+      x = ceil(-ts.seconds / SECONDS_PER_MINUTE);
+      ts.minutes -= x;
+      ts.seconds += x * SECONDS_PER_MINUTE;
+
+    } else if (ts.seconds >= SECONDS_PER_MINUTE) {
+      // ripple seconds up to minutes
+      ts.minutes += floor(ts.seconds / SECONDS_PER_MINUTE);
+      ts.seconds %= SECONDS_PER_MINUTE;
+    }
+
+    if (ts.minutes < 0) {
+      // ripple hours down to minutes
+      x = ceil(-ts.minutes / MINUTES_PER_HOUR);
+      ts.hours -= x;
+      ts.minutes += x * MINUTES_PER_HOUR;
+
+    } else if (ts.minutes >= MINUTES_PER_HOUR) {
+      // ripple minutes up to hours
+      ts.hours += floor(ts.minutes / MINUTES_PER_HOUR);
+      ts.minutes %= MINUTES_PER_HOUR;
+    }
+
+    if (ts.hours < 0) {
+      // ripple days down to hours
+      x = ceil(-ts.hours / HOURS_PER_DAY);
+      ts.days -= x;
+      ts.hours += x * HOURS_PER_DAY;
+
+    } else if (ts.hours >= HOURS_PER_DAY) {
+      // ripple hours up to days
+      ts.days += floor(ts.hours / HOURS_PER_DAY);
+      ts.hours %= HOURS_PER_DAY;
+    }
+
+    while (ts.days < 0) {
+      // NOTE: never actually seen this loop more than once
+
+      // ripple months down to days
+      ts.months--;
+      ts.days += borrowMonths(ts.refMonth, 1);
+    }
+
+    // weeks is always zero here
+
+    if (ts.days >= DAYS_PER_WEEK) {
+      // ripple days up to weeks
+      ts.weeks += floor(ts.days / DAYS_PER_WEEK);
+      ts.days %= DAYS_PER_WEEK;
+    }
+
+    if (ts.months < 0) {
+      // ripple years down to months
+      x = ceil(-ts.months / MONTHS_PER_YEAR);
+      ts.years -= x;
+      ts.months += x * MONTHS_PER_YEAR;
+
+    } else if (ts.months >= MONTHS_PER_YEAR) {
+      // ripple months up to years
+      ts.years += floor(ts.months / MONTHS_PER_YEAR);
+      ts.months %= MONTHS_PER_YEAR;
+    }
+
+    // years is always non-negative here
+    // decades, centuries and millennia are always zero here
+
+    if (ts.years >= YEARS_PER_DECADE) {
+      // ripple years up to decades
+      ts.decades += floor(ts.years / YEARS_PER_DECADE);
+      ts.years %= YEARS_PER_DECADE;
+
+      if (ts.decades >= DECADES_PER_CENTURY) {
+        // ripple decades up to centuries
+        ts.centuries += floor(ts.decades / DECADES_PER_CENTURY);
+        ts.decades %= DECADES_PER_CENTURY;
+
+        if (ts.centuries >= CENTURIES_PER_MILLENNIUM) {
+          // ripple centuries up to millennia
+          ts.millennia += floor(ts.centuries / CENTURIES_PER_MILLENNIUM);
+          ts.centuries %= CENTURIES_PER_MILLENNIUM;
+        }
+      }
+    }
+  }
+
+  /**
+   * Remove any units not requested
+   * 
+   * @private
+   * @param {Timespan} ts
+   * @param {number} units the units to populate
+   * @param {number} max number of labels to output
+   * @param {number} digits max number of decimal digits to output
+   */
+  function pruneUnits(ts, units, max, digits) {
+    var count = 0;
+
+    // Calc from largest unit to smallest to prevent underflow
+    if (!(units & MILLENNIA) || (count >= max)) {
+      // ripple millennia down to centuries
+      ts.centuries += ts.millennia * CENTURIES_PER_MILLENNIUM;
+      delete ts.millennia;
+
+    } else if (ts.millennia) {
+      count++;
+    }
+
+    if (!(units & CENTURIES) || (count >= max)) {
+      // ripple centuries down to decades
+      ts.decades += ts.centuries * DECADES_PER_CENTURY;
+      delete ts.centuries;
+
+    } else if (ts.centuries) {
+      count++;
+    }
+
+    if (!(units & DECADES) || (count >= max)) {
+      // ripple decades down to years
+      ts.years += ts.decades * YEARS_PER_DECADE;
+      delete ts.decades;
+
+    } else if (ts.decades) {
+      count++;
+    }
+
+    if (!(units & YEARS) || (count >= max)) {
+      // ripple years down to months
+      ts.months += ts.years * MONTHS_PER_YEAR;
+      delete ts.years;
+
+    } else if (ts.years) {
+      count++;
+    }
+
+    if (!(units & MONTHS) || (count >= max)) {
+      // ripple months down to days
+      if (ts.months) {
+        ts.days += borrowMonths(ts.refMonth, ts.months);
+      }
+      delete ts.months;
+
+      if (ts.days >= DAYS_PER_WEEK) {
+        // ripple day overflow back up to weeks
+        ts.weeks += floor(ts.days / DAYS_PER_WEEK);
+        ts.days %= DAYS_PER_WEEK;
+      }
+
+    } else if (ts.months) {
+      count++;
+    }
+
+    if (!(units & WEEKS) || (count >= max)) {
+      // ripple weeks down to days
+      ts.days += ts.weeks * DAYS_PER_WEEK;
+      delete ts.weeks;
+
+    } else if (ts.weeks) {
+      count++;
+    }
+
+    if (!(units & DAYS) || (count >= max)) {
+      //ripple days down to hours
+      ts.hours += ts.days * HOURS_PER_DAY;
+      delete ts.days;
+
+    } else if (ts.days) {
+      count++;
+    }
+
+    if (!(units & HOURS) || (count >= max)) {
+      // ripple hours down to minutes
+      ts.minutes += ts.hours * MINUTES_PER_HOUR;
+      delete ts.hours;
+
+    } else if (ts.hours) {
+      count++;
+    }
+
+    if (!(units & MINUTES) || (count >= max)) {
+      // ripple minutes down to seconds
+      ts.seconds += ts.minutes * SECONDS_PER_MINUTE;
+      delete ts.minutes;
+
+    } else if (ts.minutes) {
+      count++;
+    }
+
+    if (!(units & SECONDS) || (count >= max)) {
+      // ripple seconds down to milliseconds
+      ts.milliseconds += ts.seconds * MILLISECONDS_PER_SECOND;
+      delete ts.seconds;
+
+    } else if (ts.seconds) {
+      count++;
+    }
+
+    // nothing to ripple milliseconds down to
+    // so ripple back up to smallest existing unit as a fractional value
+    if (!(units & MILLISECONDS) || (count >= max)) {
+      fractional(ts, digits);
+    }
+  }
+
+  /**
+   * Populates the Timespan object
+   * 
+   * @private
+   * @param {Timespan} ts
+   * @param {?Date} start the starting date
+   * @param {?Date} end the ending date
+   * @param {number} units the units to populate
+   * @param {number} max number of labels to output
+   * @param {number} digits max number of decimal digits to output
+   */
+  function populate(ts, start, end, units, max, digits) {
+    var now = new Date();
+
+    ts.start = start = start || now;
+    ts.end = end = end || now;
+    ts.units = units;
+
+    ts.value = end.getTime() - start.getTime();
+    if (ts.value < 0) {
+      // swap if reversed
+      var tmp = end;
+      end = start;
+      start = tmp;
+    }
+
+    // reference month for determining days in month
+    ts.refMonth = new Date(start.getFullYear(), start.getMonth(), 15, 12, 0, 0);
+    try {
+      // reset to initial deltas
+      ts.millennia = 0;
+      ts.centuries = 0;
+      ts.decades = 0;
+      ts.years = end.getFullYear() - start.getFullYear();
+      ts.months = end.getMonth() - start.getMonth();
+      ts.weeks = 0;
+      ts.days = end.getDate() - start.getDate();
+      ts.hours = end.getHours() - start.getHours();
+      ts.minutes = end.getMinutes() - start.getMinutes();
+      ts.seconds = end.getSeconds() - start.getSeconds();
+      ts.milliseconds = end.getMilliseconds() - start.getMilliseconds();
+
+      ripple(ts);
+      pruneUnits(ts, units, max, digits);
+
+    } finally {
+      delete ts.refMonth;
+    }
+
+    return ts;
+  }
+
+  /**
+   * Determine an appropriate refresh rate based upon units
+   * 
+   * @private
+   * @param {number} units the units to populate
+   * @return {number} milliseconds to delay
+   */
+  function getDelay(units) {
+    if (units & MILLISECONDS) {
+      // refresh very quickly
+      return MILLISECONDS_PER_SECOND / 30; //30Hz
+    }
+
+    if (units & SECONDS) {
+      // refresh every second
+      return MILLISECONDS_PER_SECOND; //1Hz
+    }
+
+    if (units & MINUTES) {
+      // refresh every minute
+      return MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE;
+    }
+
+    if (units & HOURS) {
+      // refresh hourly
+      return MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
+    }
+    
+    if (units & DAYS) {
+      // refresh daily
+      return MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY;
+    }
+
+    // refresh the rest weekly
+    return MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK;
+  }
+
+  /**
+   * API entry point
+   * 
+   * @public
+   * @param {Date|number|null|function(Timespan,number)} start the starting date
+   * @param {Date|number|null|function(Timespan,number)} end the ending date
+   * @param {number} units the units to populate
+   * @param {number} max number of labels to output
+   * @param {number} digits max number of decimal digits to output
+   * @return {Timespan|number}
+   */
+  function countdown(start, end, units, max, digits) {
+    var callback;
+
+    // ensure some units or use defaults
+    units = +units || DEFAULTS;
+    // max must be positive
+    max = (max > 0) ? max : NaN;
+    // clamp digits to an integer between [0, 20]
+    digits = (digits > 0) ? (digits < 20) ? Math.round(digits) : 20 : 0;
+
+    // ensure start date
+    if ('function' === typeof start) {
+      callback = start;
+      start = null;
+
+    } else if (!(start instanceof Date)) {
+      start = (start !== null && isFinite(start)) ? new Date(start) : null;
+    }
+
+    // ensure end date
+    if ('function' === typeof end) {
+      callback = end;
+      end = null;
+
+    } else if (!(end instanceof Date)) {
+      end = (end !== null && isFinite(end)) ? new Date(end) : null;
+    }
+
+    if (!start && !end) {
+      // used for unit testing
+      return new Timespan();
+    }
+
+    if (!callback) {
+      return populate(new Timespan(), /** @type{?Date} */(start), /** @type{?Date} */(end), units, max, digits);
+    }
+
+    // base delay off units
+    var delay = getDelay(units),
+      timerId,
+      fn = function() {
+        callback(
+          populate(new Timespan(), /** @type{?Date} */(start), /** @type{?Date} */(end), units, max, digits),
+          timerId
+        );
+      };
+
+    fn();
+    return (timerId = setInterval(fn, delay));
+  }
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.MILLISECONDS = MILLISECONDS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.SECONDS = SECONDS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.MINUTES = MINUTES;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.HOURS = HOURS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.DAYS = DAYS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.WEEKS = WEEKS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.MONTHS = MONTHS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.YEARS = YEARS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.DECADES = DECADES;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.CENTURIES = CENTURIES;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.MILLENNIA = MILLENNIA;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.DEFAULTS = DEFAULTS;
+
+  /**
+   * @public
+   * @const
+   * @type {number}
+   */
+  countdown.ALL = MILLENNIA|CENTURIES|DECADES|YEARS|MONTHS|WEEKS|DAYS|HOURS|MINUTES|SECONDS|MILLISECONDS;
+
+  /**
+   * Override the unit labels
+   * @public
+   * @param {string|Array} singular a pipe ('|') delimited list of singular unit name overrides
+   * @param {string|Array} plural a pipe ('|') delimited list of plural unit name overrides
+   * @param {string} last a prefix for the last unit if more than one (default: 'and ')
+   * @param {string} delim a delimiter to use between units (default: ', ')
+   */
+  var setLabels = countdown.setLabels = function(singular, plural, last, delim) {
+    singular = singular || [];
+    if (singular.split) {
+      singular = singular.split('|');
+    }
+    plural = plural || [];
+    if (plural.split) {
+      plural = plural.split('|');
+    }
+
+    for (var i=LABEL_MILLISECONDS; i<=LABEL_MILLENNIA; i++) {
+      // override any specified units
+      LABELS_SINGLUAR[i] = singular[i] || LABELS_SINGLUAR[i];
+      LABELS_PLURAL[i] = plural[i] || LABELS_PLURAL[i];
+    }
+
+    LABEL_LAST = ('string' === typeof last) ? last : LABEL_LAST;
+    LABEL_DELIM = ('string' === typeof delim) ? delim : LABEL_DELIM;
+  };
+
+  /**
+   * Revert to the default unit labels
+   * @public
+   */
+  var resetLabels = countdown.resetLabels = function() {
+    LABELS_SINGLUAR = 'millisecond|second|minute|hour|day|week|month|year|decade|century|millennium'.split('|');
+    LABELS_PLURAL = 'milliseconds|seconds|minutes|hours|days|weeks|months|years|decades|centuries|millennia'.split('|');
+    LABEL_LAST = 'and ';
+    LABEL_DELIM = ', ';
+  };
+
+  resetLabels();
+
+  if (module && module.exports) {
+    module.exports = countdown;
+
+  } else if (typeof window.define === 'function' && typeof window.define.amd !== 'undefined') {
+    window.define('countdown', [], function() {
+      return countdown;
+    });
+  }
+
+  return countdown;
+
+})(module);
