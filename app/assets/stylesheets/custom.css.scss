@@ -5,3 +5,27 @@
 .approval-table tr:nth-child(4n+1), .approval-table tr:nth-child(4n)  {
     background: #f9f9f9;
 }
+
+.color-header {
+  background: #3498DB;
+  color: #fff;
+  //padding: 20px 0;
+}
+
+.color-box {
+  padding: 30px 0 20px 0;
+}
+
+.color-box h2 {
+  margin: 0;
+}
+
+// Override bootstrap
+
+.navbar-brand {
+  padding-left: 0 !important;
+}
+
+.navbar-toggle {
+  margin-right: 0 !important;
+}

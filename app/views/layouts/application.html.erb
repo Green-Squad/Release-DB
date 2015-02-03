@@ -8,8 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
   </head>
   <body>
-    <div class="container">
+    <div class="color-header">
       <%= render partial: "elements/navbar" %>
+
+      <div class="container color-box">
+        <div class="row">
+          
+          <div class="col-md-7 col-md-push-5">
+            <%= form_tag("/", method: "post", class: 'form-horizontal', id: "search-form") do %>
+            <div class="input-group">
+              <%= text_field_tag :search, params[:search], placeholder: "e.g. Grand Theft Auto V", class: "form-control", id: 'search-box' %>
+              <span class="input-group-btn"> <%= submit_tag "Search", class: "btn btn-primary" %> </span>
+            </div>
+            <% end %>
+          </div>
+          <div class="col-md-5 col-md-pull-7">
+            <h2>Page Title</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
       <%= bootstrap_flash %>
       <div id="msg"></div>
 

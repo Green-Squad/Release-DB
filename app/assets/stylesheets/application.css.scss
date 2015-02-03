@@ -15,25 +15,23 @@
 
 *= require_self
 */
-@import "bootstrap_configuration";
 
+
+@import "variables";
 @import "bootstrap-sprockets";
-
+// Then bootstrap itself
 @import "bootstrap";
 
-//->Prelang (ui_framework:twitter_bootstrap)
+// And finally bootswatch style itself
+@import "bootswatch/flatly/bootswatch";
 
-// Give everything in 'yield' margin to separate it.
-.yield {
-  margin: 30px;
-}
 
-// Constrain forms for models (scaffolded models) so they aren't full page width.
-.form-model {
-  max-width: 750px;
-}
 
-//->Prelang (user_login:devise)
-.form-user {
-  max-width: 450px;
-}
+
+
+
+//@import "bootstrap_configuration";
+
+
+
+//@import "bootstrap";

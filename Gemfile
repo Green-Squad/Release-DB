@@ -6,7 +6,7 @@ gem 'rails', '4.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '>= 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -49,6 +49,9 @@ gem 'bundler'
 gem 'jquery-turbolinks'
 
 gem "recaptcha", github: "ambethia/recaptcha"
+
+gem "sass", '3.4.11'
+gem 'bootswatch-rails'
 
 group :development, :test do
   gem 'dotenv-rails'
