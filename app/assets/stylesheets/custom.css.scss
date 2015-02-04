@@ -1,3 +1,5 @@
+@import "variables";
+
 .hidden-field {
   display: none;
 }
@@ -7,8 +9,8 @@
 }
 
 .color-header {
-  background: #3498DB;
-  color: #ECF0F1;
+  background: $peter-river;
+  color: $clouds;
   //padding: 20px 0;
 }
 
@@ -39,4 +41,16 @@
 
 .navbar-toggle {
   margin-right: 0 !important;
+}
+
+.badge {
+  background-color: $clouds !important;
+  color: #555 !important;
+  font-weight: normal !important;
+}
+
+// Turbolinks
+
+html.turbolinks-progress-bar::before {
+  background-color: #fff !important;
 }

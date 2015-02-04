@@ -2,10 +2,10 @@
 
 <div class="row">
   <% @release_types.each do |release_type, release_collection| %>
-  <div class="col-md-4">
+  <div class="col-md-4 <%= release_type.downcase %>">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= release_type %> Coming Soon</h3>
+        <h3 class="panel-title"><%= link_to "#{release_type} Coming Soon", category_path(release_type.downcase) %></h3>
       </div>
       <div class="list-group">
         <% release_collection.each do |release| %>

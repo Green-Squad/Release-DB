@@ -1,0 +1,15 @@
+@import "variables";
+
+$light-color: $turquoise;
+$dark-color: $green-sea;
+
+.music {
+  .panel-primary > .panel-heading {
+    background-color: $light-color;
+    border-color: $light-color;
+  }
+  
+  .panel-primary {
+    border-color: $light-color;
+  }
+}
