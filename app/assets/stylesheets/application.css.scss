@@ -18,20 +18,13 @@
 
 
 @import "variables";
+
 @import "bootstrap-sprockets";
+
 // Then bootstrap itself
 @import "bootstrap";
 
 // And finally bootswatch style itself
 @import "bootswatch/flatly/bootswatch";
 
-
-
-
-
-
-//@import "bootstrap_configuration";
-
-
-
-//@import "bootstrap";
+@import "font-awesome";

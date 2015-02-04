@@ -4679,10 +4679,10 @@ Editableform based on Twitter Bootstrap 3
     //buttons
     $.fn.editableform.buttons = 
       '<button type="submit" class="btn btn-primary btn-sm editable-submit">'+
-        '<i class="glyphicon glyphicon-ok"></i>'+
+        '<i class="fa fa-check"></i>'+
       '</button>'+
       '<button type="button" class="btn btn-default btn-sm editable-cancel">'+
-        '<i class="glyphicon glyphicon-remove"></i>'+
+        '<i class="fa fa-remove"></i>'+
       '</button>';         
     
     //error classes
@@ -4704,7 +4704,7 @@ Editableform based on Twitter Bootstrap 3
         containerName: 'popover',
         containerDataName: 'bs.popover',
         innerCss: '.popover-content',
-        defaults: $.fn.popover.Constructor.DEFAULTS,
+        defaults: ($.fn.popover.Constructor) ? $.fn.popover.Constructor.DEFAULTS : null,
 
         initContainer: function(){
             $.extend(this.containerOptions, {

@@ -52,6 +52,7 @@ gem "recaptcha", github: "ambethia/recaptcha"
 
 gem "sass", '3.4.11'
 gem 'bootswatch-rails'
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'dotenv-rails'
