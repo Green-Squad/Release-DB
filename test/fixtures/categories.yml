@@ -7,3 +7,15 @@ one:
 two:
   name: MyString2
   slug: MyString2
+
+three:
+  name: Games
+  slug: games
+
+four:
+  name: Movies
+  slug: movies
+
+five:
+  name: Music
+  slug: music
