@@ -1,4 +1,5 @@
-<h1><%= @category.name %></h1>
+<% provide(:page_name, @category.name) %>
+
 <div id="product-list">
   <% @products.each do |product| %>
   <div>

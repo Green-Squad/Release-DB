@@ -1,6 +1,7 @@
+<% provide(:page_name, "<span id='name' class='editable' data-type='text' data-pk='' data-url='/products/#{@product.id}'>#{@product.name}</span>".html_safe) %>
+
 <button id="edit-button" class="btn pull-right">Toggle Edit</button>
 
-<h1><span id="name" class="editable" data-type="text" data-pk="" data-url="/products/<%= @product.id %>"> <%= @product.name %> </span></h1>
 <span><%= @product.category.name %> </span>
 
 <h2>Releases</h2>

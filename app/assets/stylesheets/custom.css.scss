@@ -8,7 +8,7 @@
 
 .color-header {
   background: #3498DB;
-  color: #fff;
+  color: #ECF0F1;
   //padding: 20px 0;
 }
 
@@ -18,6 +18,12 @@
 
 .color-box h2 {
   margin: 0;
+}
+
+.page-name .editable-click.editable-disabled,
+.page-name a.editable-click.editable-disabled,
+.page-name a.editable-click.editable-disabled:hover {
+  color: #ECF0F1;
 }
 
 // Override bootstrap
