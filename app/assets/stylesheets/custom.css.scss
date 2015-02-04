@@ -16,14 +16,19 @@
   padding: 30px 0 20px 0;
 }
 
-.color-box h2 {
+.page-name {
   margin: 0;
+  font-size: 32px;
 }
 
 .page-name .editable-click.editable-disabled,
 .page-name a.editable-click.editable-disabled,
 .page-name a.editable-click.editable-disabled:hover {
   color: #ECF0F1;
+}
+
+#main-container {
+  margin-top: 30px;
 }
 
 // Override bootstrap

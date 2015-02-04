@@ -22,17 +22,21 @@
             </div>
             <% end %>
           </div>
+          
           <div class="col-md-5 col-md-pull-7">
-            <h2 class="page-name"><%= yield(:page_name) %></h2>
+            <h1 class="page-name"><%= yield(:page_name) %></h1>
           </div>
+          
         </div>
       </div>
     </div>
-    <div class="container">
+    
+    <div id="main-container" class="container">
       <%= bootstrap_flash %>
       <div id="msg"></div>
 
       <%= yield %>
     </div>
+    
   </body>
 </html>

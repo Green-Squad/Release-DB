@@ -1,3 +1,23 @@
 <% provide(:page_name, "Home") %>
 
-
+<div class="row">
+  <% @release_types.each do |release_type, release_collection| %>
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= release_type %> Coming Soon</h3>
+      </div>
+      <div class="list-group">
+        <% release_collection.each do |release| %>
+          <%= link_to product_path(release[:slug]), class: "list-group-item" do %>
+            <%= 
+            truncate(release[:name], length: 25) +
+            content_tag(:span, release[:launch_date], class: 'badge') 
+            %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
