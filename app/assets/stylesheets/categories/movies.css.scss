@@ -35,4 +35,12 @@ $dark-color: $wisteria;
   a:hover {
     color: $dark-color;
   }
+  
+  .category-item {
+    border-color: $light-color;
+  }
+}
+
+.category-list li.movies a {
+  border-color: $light-color;
 }

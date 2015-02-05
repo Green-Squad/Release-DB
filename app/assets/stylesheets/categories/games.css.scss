@@ -34,4 +34,12 @@ $dark-color: $pomegranate;
   a:hover {
     color: $dark-color;
   }
+  
+  .category-item {
+    border-color: $light-color;
+  }
+}
+
+.category-list li.games a {
+  border-color: $light-color;
 }

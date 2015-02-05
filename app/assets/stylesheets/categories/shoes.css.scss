@@ -1,9 +1,9 @@
 @import "variables";
 
-$light-color: $turquoise;
-$dark-color: $green-sea;
+$light-color: $wet-asphalt;
+$dark-color: $midnight-blue;
 
-.music {
+.shoes {
   .panel-primary > .panel-heading {
     background-color: $light-color;
     border-color: $light-color;
@@ -41,6 +41,6 @@ $dark-color: $green-sea;
   }
 }
 
-.category-list li.music a {
+.category-list li.shoes a {
   border-color: $light-color;
 }
