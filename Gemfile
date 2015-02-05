@@ -1,58 +1,38 @@
 source 'https://rubygems.org'
 
+gem 'activeadmin',              github: 'gregbell/active_admin'
+gem 'bootstrap-sass',           github: 'twbs/bootstrap-sass'
+gem 'devise',                   github: 'plataformatec/devise'
+gem "recaptcha",                github: "ambethia/recaptcha"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
-# Use postgresql as the database for Active Record
-gem 'pg'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 4.0.3'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-gem 'friendly_id', '~> 5.1.0'
-
-gem 'paper_trail'
-
-#gem 'protected_attributes'
-
+gem 'binding_of_caller'
 gem 'bundler'
-
-gem 'jquery-turbolinks'
-
-gem "recaptcha", github: "ambethia/recaptcha"
-
-gem "sass", '3.4.11'
+gem 'bootstrap-sass-extras'
 gem 'bootswatch-rails'
-gem "font-awesome-rails"
+gem 'coffee-rails',             '~> 4.0.0'
+gem 'font-awesome-rails'
+gem 'friendly_id',              '~> 5.1.0'
+gem 'jbuilder',                 '~> 2.0'
+gem 'jquery-rails',             '>= 4.0.0'
+gem 'jquery-turbolinks'
+gem 'jquery-ui-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'paper_trail'
+gem 'pg'
+gem 'rails',                    '~>4.2.0'
+gem "sass",                     '3.4.11'
+gem 'sass-rails',               '>= 4.0.3'
+gem 'sdoc',                     '~> 0.4.0',     group: :doc
+gem 'simple_form'
+gem 'turbolinks'
+gem 'tzinfo-data'
+gem 'uglifier',                 '>= 1.3.0'
+gem 'validates_formatting_of'
+
+group :development do
+  gem 'spring'
+end
 
 group :development, :test do
   gem 'dotenv-rails'
@@ -63,14 +43,3 @@ group :test do
   gem 'mini_backtrace'
   gem 'guard-minitest'
 end
-
-gem 'devise', github: 'plataformatec/devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'simple_form'
-gem 'binding_of_caller'
-gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
-gem 'bootstrap-sass-extras'
-gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'tzinfo-data'
-gem 'validates_formatting_of'
