@@ -7,36 +7,45 @@
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
   </head>
-  <body>
+  <body class="<%= yield(:body_class) %>">
     <div class="color-header">
-      <%= render partial: "elements/navbar" %>
 
-      <div class="container color-box">
-        <div class="row">
-          
-          <div class="col-md-7 col-md-push-5">
-            <%= form_tag("/", method: "post", class: 'form-horizontal', id: "search-form") do %>
-            <div class="input-group">
-              <%= text_field_tag :search, params[:search], placeholder: "e.g. Grand Theft Auto V", class: "form-control", id: 'search-box' %>
-              <span class="input-group-btn"> <%= submit_tag "Search", class: "btn btn-primary" %> </span>
-            </div>
-            <% end %>
-          </div>
-          
-          <div class="col-md-5 col-md-pull-7">
-            <h1 class="page-name"><%= yield(:page_name) %></h1>
-          </div>
-          
+      <div class="container">
+        <div>
+          <%= link_to "Release Date", defined?(root_path) ? root_path : "#", class: "navbar-brand" %>
+          <i class="fa fa-search pull-right" id="search-icon"></i>
         </div>
+        <%= render partial: "elements/navbar" %>
+        <%= render partial: "elements/search" %>
+
       </div>
     </div>
-    
+
     <div id="main-container" class="container">
+
+      <div class="top-ad-box">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Release Date Top -->
+        <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9067954073014278"
+        data-ad-slot="3323988779"
+        data-ad-format="auto"></ins>
+        <script>
+          ( adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+
       <%= bootstrap_flash %>
       <div id="msg"></div>
-
+      <h1 class="page-name"><%= yield(:page_name) %></h1>
       <%= yield %>
     </div>
-    
+    <footer class="container" id="footer">
+      <div class="col-md-12">
+        <span>Developed by Kyle Dornblaser and Jordan Smith</span>
+        <span class="pull-right"><%= link_to "GitHub", "https://github.com/Green-Squad/Release-Date" %></span>
+      </div>
+    </footer>
   </body>
 </html>

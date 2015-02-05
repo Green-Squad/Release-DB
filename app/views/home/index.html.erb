@@ -1,5 +1,15 @@
 <% provide(:page_name, "") %>
 
+<div class="well">
+
+  <h3 style="margin: 0 0 10px 0;">Find a release date</h3>
+
+  <%= form_tag("/", method: "get", class: 'form-horizontal', id: "search-form") do %>
+    <span class="home-search-box"> <%= text_field_tag :search, params[:search], placeholder: "e.g. Grand Theft Auto", class: "form-control", id: 'search-box' %> </span>
+    <span class="home-search-button"> <%= submit_tag "Search", class: "btn btn-primary" %> </span>
+  <% end %>
+</div>
+
 <div class="row">
   <% @release_types.each do |release_type, release_collection| %>
   <div class="col-md-4 <%= release_type.downcase %>">
@@ -9,12 +19,12 @@
       </div>
       <div class="list-group">
         <% release_collection.each do |release| %>
-          <%= link_to product_path(release[:slug]), class: "list-group-item" do %>
-            <%= 
-            truncate(release[:name], length: 25) +
-            content_tag(:span, release[:launch_date], class: 'badge') 
-            %>
-          <% end %>
+        <%= link_to product_path(release[:slug]), class: "list-group-item" do %>
+        <%=
+ truncate(release[:name], length: 25) +
+          content_tag(:span, release[:launch_date], class: 'badge')
+%>
+        <% end %>
         <% end %>
       </div>
     </div>

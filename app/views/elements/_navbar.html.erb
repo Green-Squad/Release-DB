@@ -1,34 +1,21 @@
-<div class="container">
-  <nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "Release Date", defined?(root_path) ? root_path : "#", class: "navbar-brand" %>
-    </div>
+<nav class="navbar-default" role="navigation">
+
+  <ul class="nav-ul">
+    <% if defined?(Devise) %>
+    <% if admin_user_signed_in? %>
+    <li>
+      <%= link_to "Admin", admin_dashboard_path %>
+    </li>
+    <% end %>
+    <% end %>
+    <li>
+      <%= link_to "Categories", categories_path %>
+    </li>
+    <li>
+      <%= link_to "Products", products_path %>
+    </li>
+  </ul>
   
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="nav navbar-nav"></ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if defined?(Devise) %>
-          <% if admin_user_signed_in? %>
-          <li>
-            <%= link_to "Admin", admin_dashboard_path %>
-          </li>
-          <% end %>
-        <% end %>
-        <li>
-          <%= link_to "Categories", categories_path %>
-        </li>
-        <li>
-          <%= link_to "Products", products_path %>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </nav>
-</div>
+  <div class="clearfix"></div>
+  
+</nav>
