@@ -38,9 +38,11 @@ $dark-color: $midnight-blue;
   
   .category-item {
     border-color: $light-color;
+    
+    &:hover, &:focus {
+      background-color: $light-color;
+      color: #fff;
+      text-decoration: none;
+    }
   }
-}
-
-.category-list li.shoes a {
-  border-color: $light-color;
 }
