@@ -38,7 +38,10 @@
 
       <%= bootstrap_flash %>
       <div id="msg"></div>
-      <h1 class="page-name"><%= yield(:page_name) %></h1>
+      <% page_name = !yield(:page_name).blank? ? yield(:page_name) : nil %>
+      <% if page_name %>
+      <h1 class="page-name page-header"><%= page_name %></h1>
+      <% end %>
       <%= yield %>
     </div>
     <footer class="container" id="footer">

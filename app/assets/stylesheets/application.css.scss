@@ -16,15 +16,9 @@
 *= require_self
 */
 
-
 @import "variables";
-
 @import "bootstrap-sprockets";
-
-// Then bootstrap itself
 @import "bootstrap";
-
-// And finally bootswatch style itself
 @import "bootswatch/flatly/bootswatch";
-
 @import "font-awesome";
+@import "octicons";

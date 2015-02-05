@@ -1,9 +1,15 @@
 <% provide(:body_class, @product.category.name.downcase)%>
-<% provide(:page_name, "<span id='name' class='editable' data-type='text' data-pk='' data-url='/products/#{@product.id}'>#{@product.name}</span>".html_safe) %>
 
-<button id="edit-button" class="btn pull-right">Toggle Edit</button>
 
-<span><%= link_to(@product.category.name, category_path(@product.category)) %> </span>
+
+<h1 class="page-name page-header">
+  <span style="display:table-cell;vertical-align: middle;width:100%;"><span id="name" class="editable" data-type="text" data-pk="" data-url="/products/<%= @product.id %>"><%= @product.name %></span></span>
+  <span class="small" style="display:table-cell;vertical-align: bottom;padding-left:15px;white-space: nowrap">
+    <a href="<%= category_path(@product.category) %>"><i class="<%= @product.category.icon %>"></i> <%= @product.category.name  %></a></span>
+</h1>
+
+
+ <button id="edit-button" class="btn btn-primary pull-right">Toggle Edit</button>
 
 <h2>Releases</h2>
 <div id="release-list">
