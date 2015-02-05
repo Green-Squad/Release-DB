@@ -19,9 +19,13 @@ $(document).ready(function() {
     
     $('#add-release-button').toggle();
     
+    $('.new-release-entry').html('');
+    
     if($('.hidden-field:hidden').size()) {
+      console.log("show")
       $('.hidden-field').show();  
     } else {
+      console.log("hide")
       $('.hidden-field').hide();
     }
 
