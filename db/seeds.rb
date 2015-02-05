@@ -32,6 +32,13 @@ categories.each do |category, media|
     Medium.create(name: medium, category: category)      
   end
 end
+
+Category.where(name: "Games").first.update_attributes(icon: "fa fa-gamepad")
+Category.where(name: "Movies").first.update_attributes(icon: "fa fa-film")
+Category.where(name: "TV").first.update_attributes(icon: "fa fa-desktop")
+Category.where(name: "Music").first.update_attributes(icon: "fa fa-headphones")
+Category.where(name: "Books").first.update_attributes(icon: "fa fa-book")
+Category.where(name: "Shoes").first.update_attributes(icon: "octicon octicon-steps")
               
 regions = JSON.load(open("http://restcountries.eu/rest/v1/all"))
 
