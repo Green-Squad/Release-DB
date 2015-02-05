@@ -12,4 +12,27 @@ $dark-color: $green-sea;
   .panel-primary {
     border-color: $light-color;
   }
+  
+    .color-header {
+    background-color: $light-color;
+  }
+  
+  
+  .btn-primary {
+    background-color: darken($dark-color, 20%);
+    border-color: darken($dark-color, 20%);
+  }
+  
+  .btn-primary:hover {
+    background-color: darken($dark-color, 40%);
+    border-color: darken($dark-color, 40%);
+  }
+  
+  a {
+    color: $light-color;
+  }
+  
+  a:hover {
+    color: $dark-color;
+  }
 }
