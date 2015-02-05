@@ -21,12 +21,13 @@ $dark-color: $green-sea;
   .btn-primary {
     background-color: darken($dark-color, 20%);
     border-color: darken($dark-color, 20%);
+  
+    &:hover, &:focus {
+      background-color: darken($dark-color, 40%);
+      border-color: darken($dark-color, 40%);
+    }
   }
   
-  .btn-primary:hover {
-    background-color: darken($dark-color, 40%);
-    border-color: darken($dark-color, 40%);
-  }
   
   a {
     color: $light-color;
