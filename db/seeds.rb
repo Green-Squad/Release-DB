@@ -13,6 +13,10 @@ Category.delete_all
 LaunchDate.delete_all
 Region.delete_all
 Release.delete_all
+PaperTrail::Version.delete_all
+
+Product.paper_trail_off!
+Release.paper_trail_off!
 
 categories = {
                 Games:  ['Xbox One', 'Xbox 360', 'Xbox', 
@@ -118,4 +122,19 @@ data.each do |datum|
         Release.where(product: product, region: region, launch_date: launch_date_record, medium: datum[:medium], source: source).first_or_create
     end
   end
+end
+
+Product.paper_trail_on!
+Release.paper_trail_on!
+
+Product.all.each do |product|
+  product.update_attributes(updated_at: Time.now)
+end
+
+Release.all.each do |release|
+  release.update_attributes(updated_at: Time.now)
+end
+
+PaperTrail::Version.all.each do |version|
+  version.update_attributes(status: "approved")
 end
