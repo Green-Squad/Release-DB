@@ -42,6 +42,10 @@
   color: $clouds;
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
 // Navigation
 
 .nav-ul {
@@ -174,4 +178,10 @@ html.turbolinks-progress-bar::before {
 
 .fa-5x {
   font-size: 5em !important;
+}
+
+// Search
+
+.search-url {
+  color: #1C9845;
 }
