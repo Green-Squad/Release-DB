@@ -4,46 +4,5 @@ $light-color: $emerald;
 $dark-color: $nephritis;
 
 .tv {
-  .panel-primary > .panel-heading {
-    background-color: $light-color;
-    border-color: $light-color;
-  }
-  
-  .panel-primary {
-    border-color: $light-color;
-  }
-  
-    .color-header {
-    background-color: $light-color;
-  }
-  
-  
-  .btn-primary {
-    background-color: darken($dark-color, 20%);
-    border-color: darken($dark-color, 20%);
-  
-    &:hover, &:focus {
-      background-color: darken($dark-color, 40%);
-      border-color: darken($dark-color, 40%);
-    }
-  }
-  
-  
-  a {
-    color: $light-color;
-  }
-  
-  a:hover {
-    color: $dark-color;
-  }
-  
-  .category-item {
-    border-color: $light-color;
-    
-    &:hover, &:focus {
-      background-color: $light-color;
-      color: #fff;
-      text-decoration: none;
-    }
-  }
+  @import "category-base"
 }
