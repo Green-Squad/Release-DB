@@ -296,6 +296,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails (>= 4.0.0)
   jquery-turbolinks
+  kaminari
   mini_backtrace
   minitest-reporters
   octicons-rails

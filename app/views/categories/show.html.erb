@@ -17,4 +17,8 @@
   Add Product
 </button>
 
+<div>
+  <%= paginate @products %>
+</div>
+
 <%= content_tag :div, class: "temp_information", data: {category_id: @category.id} do end %>

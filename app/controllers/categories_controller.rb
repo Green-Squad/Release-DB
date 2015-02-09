@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @products = @category.products
+    @products = @category.products.order(:name).page params[:page]
   end
   
   private
