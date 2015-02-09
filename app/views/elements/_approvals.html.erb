@@ -1,42 +1,92 @@
 <%
-pending_products = PaperTrail::Version.where(item_type: "Product", status: "pending").order(:created_at)
-pending_releases = PaperTrail::Version.where(item_type: "Release", status: "pending").order(:created_at)
-@pending_models = {"Product" => pending_products, "Release" => pending_releases}
+pending_products = PaperTrail::Version.where(item_type: "Product", status: "pending").order(:created_at).page params[:page]
+pending_releases = PaperTrail::Version.where(item_type: "Release", status: "pending").order(:created_at).page params[:page]
 %>
-<% @pending_models.each do |name,  items|%>
-<h1><%= name.pluralize %></h1>
+
+<h1>Products</h1>
 <table class="table approval-table">
   <tr>
-    <% if items.first && items.first.reify %>
-    <% items.first.reify.attributes.each do |attr_name, attr_value| %>
-    <th> <%= attr_name %> </th>
-    <% end %>
-    <% end %>
+    <th> ID </th>
+    <th> Name </th>
+    <th> Slug </th>
+    <th> Category </th>
     <th> Event </th>
     <th> Actions </th>
   </tr>
-  <% items.each do |pending_item| %>
+  <% pending_products.each do |pending_item| %>
 
   <tr>
     <% item = pending_item.reify ? pending_item.reify : pending_item %>
 
-    <% item.attributes.each do |attr_name, attr_value| %>
-    <td> <%= attr_value %> </td>
-    <% end %>
+    <td> <%= item.id %> </td>
+    <td> <%= item.name %> </td>
+    <td> <%= item.slug %> </td>
+    <td> <%= item.category.name %> </td>
+
     <td><%= pending_item.event %></td>
     <td><%= link_to "Approve", approvals_approve_path(id: pending_item.id) %> <%= link_to "Reject", approvals_reject_path(id: pending_item.id) %> </td>
   </tr>
   <tr>
-    <%  item = name.constantize.find_by_id(pending_item.item_id)
-    if item
-    item.attributes.each do |attr_name, attr_value| %>
-    <td> <%= attr_value %> </td>
-    <% end %>
+    <%  item = Product.find_by_id(pending_item.item_id)
+    if item %>
+    <td> <%= item.id %> </td>
+    <td> <%= item.name %> </td>
+    <td> <%= item.slug %> </td>
+    <td> <%= item.category.name %> </td>
     <% end %>
     <td></td>
     <td></td>
   </tr>
-
   <% end %>
 </table>
-<% end %>
+
+<div>
+  <%= paginate pending_products %>
+</div>
+
+<h1>Releases</h1>
+<table class="table approval-table">
+  <tr>
+    <th> ID </th>
+    <th> Product </th>
+    <th> Region </th>
+    <th> Medium </th>
+    <th> Launch Date </th>
+    <th> Source </th>
+    <th> Event </th>
+    <th> Actions </th>
+  </tr>
+  <% pending_releases.each do |pending_item| %>
+
+  <tr>
+    <% item = pending_item.reify ? pending_item.reify : pending_item %>
+
+    <td> <%= item.id %> </td>
+    <td> <%= item.product.name %> </td>
+    <td> <%= item.region.name %> </td>
+    <td> <%= item.medium.name %> </td>
+    <td> <%= item.launch_date.launch_date %> </td>
+    <td> <%= item.source %> </td>
+
+    <td><%= pending_item.event %></td>
+    <td><%= link_to "Approve", approvals_approve_path(id: pending_item.id) %> <%= link_to "Reject", approvals_reject_path(id: pending_item.id) %> </td>
+  </tr>
+  <tr>
+    <%  item = Release.find_by_id(pending_item.item_id)
+    if item %>
+    <td> <%= item.id %> </td>
+    <td> <%= item.product.name %> </td>
+    <td> <%= item.region.name %> </td>
+    <td> <%= item.medium.name %> </td>
+    <td> <%= item.launch_date.launch_date %> </td>
+    <td> <%= item.source %> </td>
+    <% end %>
+    <td></td>
+    <td></td>
+  </tr>
+  <% end %>
+</table>
+
+<div>
+  <%= paginate pending_releases %>
+</div>

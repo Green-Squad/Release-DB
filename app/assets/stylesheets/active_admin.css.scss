@@ -15,3 +15,15 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+.approval-table tr:nth-child(4n+1), .approval-table tr:nth-child(4n)  {
+    background: #fff;
+}
+
+.pagination {
+  list-style: none !important;
+  
+  li {
+    display: inline !important;
+  }
+}
