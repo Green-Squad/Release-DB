@@ -41,6 +41,9 @@ $(document).ready(function() {
     }
   });
 
+  $('#category_id').select2({
+    id: function(data) { return data.text; }
+  });
 
   $('#add-release-button').click(function() {
     if ($('.new-release-entry').empty()) {
@@ -116,6 +119,8 @@ $(document).ready(function() {
                     "id='name' " + 
                     "data-type='text' " +
                     "data-pk='' " +
+                    "data-placeholder='Name' " +
+                    "data-showbuttons='false' " +
                     "data-send='auto'>" +
                   "</span> ";
        
@@ -125,7 +130,6 @@ $(document).ready(function() {
                       "id='category_id' " +
                       "data-type='select' " +
                       "data-pk='' " +
-                      "data-placeholder='' " +
                       "data-value='" +
                         $('.temp_information').data('category-id') +
                       "' " +
@@ -138,9 +142,10 @@ $(document).ready(function() {
                     " / " +
                     "<span class='new-product-editable' " +
                       "id='category_id' " +
-                      "data-type='select' " +
+                      "data-type='select2' " +
                       "data-pk='' " +
-                      "data-placeholder='' " +
+                      "data-placeholder='Category' " +
+                      "data-id='1233' " +
                       "data-source='/categories.json' " +
                       "data-showbuttons='false' " +
                       "data-send='auto'>" +
@@ -228,6 +233,7 @@ $(document).ready(function() {
     });
     
     $('#new-product-save').click(function() {
+      $('.editableform').submit();
       $('.new-product-editable').editable('submit', {
         url : '/products',
         ajaxOptions : {
@@ -249,7 +255,7 @@ $(document).ready(function() {
             $('#new-product-save').remove();
 
             $('.new-product-entry').removeClass('new-product-entry');
-            $('#product-list').append('<div class="new-product-entry"></div>');
+            $('#product-list').prepend('<div class="new-product-entry"></div>');
 
           } else if (data && data.errors) {
             //server-side validation error, response like {"errors": {"username": "username already exist"} }

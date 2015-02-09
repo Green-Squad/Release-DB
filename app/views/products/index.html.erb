@@ -1,21 +1,24 @@
 <% provide(:page_name, "Products") %>
 
-<div id="product-list">
-  <% @products.each do |product| %>
-  <div>
-    <%= link_to product.name, product_path(product) %>
+<div class="row">
+  <div class="col-md-2 col-md-push-10" id="button-col">
+    <button id="add-product-button" class="btn btn-primary">
+      Add Product
+    </button>
   </div>
-  <% end %>
+  <div class="col-md-10 col-md-pull-2">
+    <div id="product-list">
+      <div class="new-product-entry">
 
-  <div class="new-product-entry">
-
+      </div>
+      <% @products.each do |product| %>
+      <div>
+        <%= link_to product.name, product_path(product) %>
+      </div>
+      <% end %>
+    </div>
+    <div>
+      <%= paginate @products %>
+    </div>
   </div>
-</div>
-
-<button id="add-product-button" class="btn btn-primary">
-  Add Product
-</button>
-
-<div>
-  <%= paginate @products %>
 </div>

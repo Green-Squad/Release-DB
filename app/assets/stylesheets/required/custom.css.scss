@@ -42,6 +42,16 @@
   margin: 0 !important;
 }
 
+#button-col {
+  margin: 0 0 10px 0;
+}
+
+@media (min-width: $screen-md-min) {
+  #button-col {
+    text-align: right;
+  }
+}
+
 // Navigation
 
 .nav-ul {
