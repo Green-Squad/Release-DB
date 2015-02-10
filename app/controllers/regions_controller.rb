@@ -4,14 +4,17 @@ class RegionsController < ApplicationController
   # GET /regions
   # GET /regions.json
   def index
-    global = Region.find_by_name("Global")
-    united_states = Region.find_by_name("United States")
-    other_regions = Region.where("name != ? AND name != ?", "United States", "Global").order(:name)
-    
-    @regions = []
-    @regions << global << united_states
-    other_regions.each do |region|
-      @regions << region
+    # Rails.cache.delete('region_list')
+    @regions = Rails.cache.fetch("region_list", :expires_in => 1.week) do
+      global = Region.find_by_name("Global")
+      united_states = Region.find_by_name("United States")
+      other_regions = Region.where("name != ? AND name != ?", "United States", "Global").order(:name)
+      
+      regions_array = []
+      regions_array << global << united_states
+      other_regions.each do |region|
+        regions_array << region
+      end
     end
 
     

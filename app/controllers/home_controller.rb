@@ -3,8 +3,6 @@ class HomeController < ApplicationController
     
     # Rails.cache.delete('home_page_upcoming_releases')
     @release_types = Rails.cache.fetch("home_page_upcoming_releases", :expires_in => 1.hour) do
-      #all_releases = Release.joins(:launch_date, :product).where("launch_dates.launch_date > ?", Time.now).order("launch_dates.launch_date").take(5)
-      
       game_releases = coming_soon_releases("Games")
       movie_releases = coming_soon_releases("Movies")
       music_releases = coming_soon_releases("Music")
