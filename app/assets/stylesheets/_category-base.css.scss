@@ -47,6 +47,14 @@ a.list-group-item {
   }
 }
 
+.dark-color {
+  color: $dark-color;
+}
+
+.light-color {
+  color: $light-color; 
+}
+
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
 .ui-widget-header .ui-state-hover,

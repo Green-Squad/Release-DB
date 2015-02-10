@@ -11,54 +11,91 @@
 
 <button id="edit-button" class="btn btn-primary pull-right">Toggle Edit</button>
 
-<h2>Releases</h2>
-<div id="release-list">
-  <% @releases.each do |release| %>
-  <div>
-    <span class="editable" 
-          id="region_id" 
-          data-value="<%= release.region.id %>" 
-          data-type="select" 
-          data-pk="" 
-          data-source="/regions.json" 
-          data-showbuttons="false" 
-          data-url="/releases/<%= release.id %>">
-          <%= release.region.name %>
-    </span> /
-    <span class="editable" 
-          id="launch_date_id" 
-          data-type="text" 
-          data-pk="" 
-          data-url="/releases/<%= release.id %>">
-          <%= release.launch_date.launch_date %>
-    </span> /
-    <span class="editable" 
-          id="medium_id" 
-          data-value="<%= release.medium.id %>" 
-          data-type="select" 
-          data-pk="" 
-          data-source="/media.json?category_id=<%= @product.category.id %>" 
-          data-showbuttons="false" 
-          data-url="/releases/<%= release.id %>">
-          <%= release.medium.name %>
-    </span>
-    <span class="hidden-field"> /
-      <span class="editable source" 
-            id="source" 
-            data-type="text" 
-            data-pk="" 
-            data-url="/releases/<%= release.id %>">
-            <%= release.source %>
-      </span>
-    </span>
-    <span class="date" data-launch-date="<%= release.launch_date.launch_date %>">
-      
-    </span>
-  </div>
-  <% end %>
-
-  <div class="new-release-entry">
+<h2><span class="small">Releases</span></h2>
+<div class="row">
+  <div id="release-list" class="col-md-6">
+    <% @releases.each do |release| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-3 dark-color">
+            Region:  
+          </div>
+          <div class="col-sm-9">
+            <span class="editable" 
+                  id="region_id" 
+                  data-value="<%= release.region.id %>" 
+                  data-type="select" 
+                  data-pk="" 
+                  data-source="/regions.json" 
+                  data-showbuttons="false" 
+                  data-url="/releases/<%= release.id %>">
+                  <%= release.region.name %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 dark-color">
+            Launch Date:  
+          </div>
+          <div class="col-sm-9">
+            <span class="editable" 
+                  id="launch_date_id" 
+                  data-type="text" 
+                  data-pk="" 
+                  data-url="/releases/<%= release.id %>">
+                  <%= release.launch_date.launch_date %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 dark-color">
+            Format: 
+          </div>
+          <div class="col-sm-9">
+            <span class="editable" 
+                  id="medium_id" 
+                  data-value="<%= release.medium.id %>" 
+                  data-type="select" 
+                  data-pk="" 
+                  data-source="/media.json?category_id=<%= @product.category.id %>" 
+                  data-showbuttons="false" 
+                  data-url="/releases/<%= release.id %>">
+                  <%= release.medium.name %>
+            </span>
+          </div>
+        </div>
+        <div class="row hidden-field">
+          <div class="col-sm-3 dark-color">
+            Source:
+          </div>
+          <div class="col-sm-9">
+            <span class="editable source" 
+                  id="source" 
+                  data-type="text" 
+                  data-pk="" 
+                  data-url="/releases/<%= release.id %>">
+                  <%= release.source %>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 dark-color">
+            Countdown: 
+          </div>
+          <div class="col-sm-9">
+            <span class="date" data-launch-date="<%= release.launch_date.launch_date %>">
+              
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
   
+    <div class="new-release-entry">
+    
+    </div>
   </div>
 </div>
 <button id="add-release-button" class="btn btn-primary" style="display:none">Add Release</button>

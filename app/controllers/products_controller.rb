@@ -10,7 +10,11 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    #@releases = Release.joins(:launch_date, :product).where("product_id = ?", @product.id).order("launch_dates.launch_date DESC")
+    
     @releases = @product.releases
+    @releases = @releases.to_a
+    @releases.sort! { |a,b| get_date(b.launch_date.launch_date) <=> get_date(a.launch_date.launch_date) }
   end
 
   # POST /products
@@ -70,5 +74,13 @@ class ProductsController < ApplicationController
   def strong_xedit_params(col_name)
     allowed_names = ['name', 'category_id']
     allowed_names.include? col_name
+  end
+  
+  def get_date(date)
+    begin
+      Date.parse(date)
+    rescue
+      Date.parse("1001-01-01")
+    end
   end
 end
