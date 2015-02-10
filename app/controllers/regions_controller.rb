@@ -4,7 +4,17 @@ class RegionsController < ApplicationController
   # GET /regions
   # GET /regions.json
   def index
-    @regions = Region.all
+    global = Region.find_by_name("Global")
+    united_states = Region.find_by_name("United States")
+    other_regions = Region.where("name != ? AND name != ?", "United States", "Global").order(:name)
+    
+    @regions = []
+    @regions << global << united_states
+    other_regions.each do |region|
+      @regions << region
+    end
+
+    
   end
 
   # GET /regions/1
