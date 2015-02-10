@@ -111,7 +111,9 @@ $(document).ready(function() {
   
   $('#add-product-button').click(function() {
     if ($('.new-product-entry').empty()) {
-      var html =  "<div>" +
+      var html =  "<div class='row' style='max-width: 500px'>" +
+                  "<div class='col-md-2' style='margin-bottom:5px'>Name:</div>" + 
+                  "<div class='col-md-10' style='margin-bottom:5px'>" +
                   "<span class='new-product-editable' " + 
                     "id='name' " + 
                     "data-type='text' " +
@@ -119,7 +121,8 @@ $(document).ready(function() {
                     "data-placeholder='Name' " +
                     "data-showbuttons='false' " +
                     "data-send='auto'>" +
-                  "</span> ";
+                  "</span> " +
+                  "</div>";
        
        if ($('.temp_information').data('category-id')) {
          html +=  "<div style='display:none;'> " +
@@ -135,8 +138,9 @@ $(document).ready(function() {
                     "</span>" +
                   "</div> ";
         } else {
-          html += "<span id='remove-category'>" +
-                    " / " +
+          html += "<div id='remove-category'>" +
+                    "<div class='col-md-2' style='margin-bottom:5px'>Category:</div>" + 
+                    "<div class='col-md-10' style='margin-bottom:5px'>" +
                     "<span class='new-product-editable' " +
                       "id='category_id' " +
                       "data-type='select' " +
@@ -147,12 +151,15 @@ $(document).ready(function() {
                       "data-showbuttons='false' " +
                       "data-send='auto'>" +
                     "</span>" +
-                  "</span> ";
+                  "</div> ";
         }
         
-        html += "<button id='new-product-save' class='btn btn-default'>" + 
+        html += "<div class='col-md-12'>" +
+                "<button id='new-product-save' class='btn btn-default'>" + 
                   "Save" +
                 "</button>" +
+                "</div>" +
+                "</div>" +
                 "</div>";
 
         $('.new-product-entry').append(html);
@@ -231,6 +238,7 @@ $(document).ready(function() {
     });
     
     $('#new-product-save').click(function() {
+      value = $('.editable-container').find('input').first().val();
       $('.editableform').submit();
       $('.new-product-editable').editable('submit', {
         url : '/products',
@@ -240,17 +248,11 @@ $(document).ready(function() {
         },
         success : function(data, config) {
           if (data && data.id) {
-            //remove unsaved class
-            $(this).editable('toggleDisabled');
-            $(this).removeClass();
-            $('#remove-category').remove();
+            $('.new-product-entry').html(value);
             
             //show messages
             var msg = 'Your contribution has been submitted for approval.';
             $('#msg').addClass('alert-success').addClass('alert').removeClass('alert-danger').html(msg).show();
-
-            //hide new release button
-            $('#new-product-save').remove();
 
             $('.new-product-entry').removeClass('new-product-entry');
             $('#product-list').prepend('<div class="new-product-entry"></div>');
