@@ -29,6 +29,14 @@ a {
   }
 }
 
+a.list-group-item {
+  color: $light-color !important;
+  
+  &:hover, &:focus {
+    color: $dark-color !important;
+  }
+}
+
 .category-item {
   border-color: $light-color;
   

@@ -154,7 +154,7 @@ $(document).ready(function() {
                   "</div> ";
         }
         
-        html += "<div class='col-md-12'>" +
+        html += "<div class='col-md-12' style='margin-bottom: 10px'>" +
                 "<button id='new-product-save' class='btn btn-default'>" + 
                   "Save" +
                 "</button>" +
@@ -254,6 +254,7 @@ $(document).ready(function() {
             var msg = 'Your contribution has been submitted for approval.';
             $('#msg').addClass('alert-success').addClass('alert').removeClass('alert-danger').html(msg).show();
 
+            $('.new-product-entry').addClass('list-group-item');
             $('.new-product-entry').removeClass('new-product-entry');
             $('#product-list').prepend('<div class="new-product-entry"></div>');
 

@@ -7,14 +7,12 @@
     </button>
   </div>
   <div class="col-md-10 col-md-pull-2">
-    <div id="product-list">
+    <div id="product-list" class="list-group">
       <div class="new-product-entry">
 
       </div>
       <% @products.each do |product| %>
-      <div>
-        <%= link_to product.name, product_path(product) %>
-      </div>
+        <%= link_to product.name, product_path(product), class: "list-group-item" %>
       <% end %>
     </div>
     <div>

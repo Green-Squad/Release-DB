@@ -178,6 +178,10 @@
   cursor: default !important;
 }
 
+a.list-group-item {
+  color: $peter-river !important;
+}
+
 // Turbolinks
 
 html.turbolinks-progress-bar::before {
