@@ -66,7 +66,7 @@ pending_releases = PaperTrail::Version.where(item_type: "Release", status: "pend
     <td> <%= item.region.name %> </td>
     <td> <%= item.medium.name %> </td>
     <td> <%= item.launch_date.launch_date %> </td>
-    <td> <%= item.source %> </td>
+    <td> <%= item.source[0..3] == "http" ? link_to(item.source, item.source) : link_to(item.source, "http://#{item.source}") %> </td>
 
     <td><%= pending_item.event %></td>
     <td><%= link_to "Approve", approvals_approve_path(id: pending_item.id) %> <%= link_to "Reject", approvals_reject_path(id: pending_item.id) %> </td>
