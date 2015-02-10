@@ -38,8 +38,16 @@
   color: $clouds;
 }
 
+.panel input, .panel select {
+  margin-bottom: 5px;
+}
+
 .no-margin {
   margin: 0 !important;
+}
+
+.button-box {
+    margin: 0 0 10px 0;
 }
 
 #button-col {
@@ -50,6 +58,10 @@
   #button-col {
     text-align: right;
   }
+  
+  .button-box {
+    float: right;
+}
 }
 
 // Navigation

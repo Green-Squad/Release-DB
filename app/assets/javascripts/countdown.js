@@ -411,9 +411,9 @@ function(module) {
       var years = this.years;
       var months = this.months;
       var days = this.days;
-      var hours = this.hours;
-      var minutes = this.minutes;
-      var seconds = this.seconds;
+      var hours = toTwoDigits(this.hours);
+      var minutes = toTwoDigits(this.minutes);
+      var seconds = toTwoDigits(this.seconds);
 
       if (years == 1) {
         returnString += years + " year ";
@@ -437,6 +437,15 @@ function(module) {
     }
     return returnString;
   };
+  
+  
+  function toTwoDigits(number) {
+    number += "";
+    if(number.length < 2) {
+      number = "0" + number;
+    }
+    return number;
+  }
 
   /**
    * Formats the entries as English labels

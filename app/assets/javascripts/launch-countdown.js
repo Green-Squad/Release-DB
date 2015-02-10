@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $('.date').each(function() {
+var dateToCountdown = function() {
+    $('.date').each(function() {
     var _this = $(this)
     launchDate = Date.parse($(this).data('launch-date'));
     if(launchDate && launchDate > Date.today()) {
@@ -8,4 +8,9 @@ $(document).ready(function() {
       }, countdown.YEARS | countdown.MONTHS | countdown.DAYS | countdown.HOURS | countdown.MINUTES | countdown.SECONDS);
     }
   });
+}
+
+$(document).ready(function() {
+  dateToCountdown()
 }); 
+

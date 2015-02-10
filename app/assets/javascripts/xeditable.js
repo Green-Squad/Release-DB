@@ -6,20 +6,13 @@ $(document).ready(function() {
   };
 
   //init editables
-  $('.editable').editable('disable');
-  $('.new-release-entry').hide();
+  $('.current-release-editable').editable('disable');
   
   $('#edit-button').click(function(e) {
-    $('.editable').editable('toggleDisabled');
-    $('.editable').editable('show', false);
+    $('.current-release-editable').editable('toggleDisabled');
+    $('.current-release-editable').editable('show', false);
     
-    $('.new-release-entry').toggle();
-    $('.new-release-editable').editable('toggleDisabled');
-    $('.new-release-editable').editable('show', false);
     
-    $('#add-release-button').toggle();
-    
-    $('.new-release-entry').html('');
     
     if($('.hidden-field:hidden').size()) {
       $('.hidden-field').show();  
@@ -40,8 +33,9 @@ $(document).ready(function() {
 
   $('#add-release-button').click(function() {
     if ($('.new-release-entry').empty()) {
-      var html =  "<div>" +
-                  "<span class='new-release-editable' " + 
+      var html =  "<div class='panel panel-default'> " +
+                  "<div class='panel-body'> " +
+                  generateReleaseRowHTML("Region","<span class='new-release-editable' " + 
                     "id='region_id' " + 
                     "data-type='select' " + 
                     "data-pk='' " +
@@ -49,18 +43,16 @@ $(document).ready(function() {
                     "data-showbuttons='false' " + 
                     "data-placeholder='Region' "  +
                     "data-send='auto'>" +
-                  "</span>" +
-                  " / ";
-      html += "<span class='new-release-editable' " + 
+                  "</span>");
+      html += generateReleaseRowHTML("Launch Date", "<span class='new-release-editable' " + 
                 "id='launch_date' " +  
                 "data-type='text' " +  
                 "data-pk='' " +  
-                "data-placeholder='Release Date' " +
+                "data-placeholder='e.g. December 25, 2015' " +
                 "data-showbuttons='false' " + 
                 "data-send='auto'>" + 
-              "</span> " + 
-              " / ";
-      html += "<span class='new-release-editable' " +  
+              "</span>");
+      html +=  generateReleaseRowHTML("Format", "<span class='new-release-editable' " +  
                 "id='medium_id' " + 
                 "data-type='select' " +  
                 "data-pk='' " +  
@@ -70,17 +62,15 @@ $(document).ready(function() {
                 "' " +  
                 "data-showbuttons='false' " +  
                 "data-send='auto'>" + 
-              "</span> ";
+              "</span>");
       
-      html += "<span class='hidden-field'> / " +
-                "<span class='new-release-editable source' " + 
+      html +=  generateReleaseRowHTML("Source", "<span class='new-release-editable source' " + 
                   "id='source' " + 
-                  "data-placeholder='Source URL' " +
+                  "data-placeholder='e.g. wikipedia.org/wiki/Halo_4' " +
                   "data-type='text' " + 
                   "data-showbuttons='false' " + 
                   "data-pk=''>" + 
-                "</span>" + 
-              "</span> ";
+              "</span>");
               
       html += "<div style='display:none'>" + 
                 "<span class='new-release-editable' " +  
@@ -98,12 +88,12 @@ $(document).ready(function() {
       html += "<button id='new-release-save' class='btn btn-default'>" + 
                 "Save" +
               "</button>" +
-              "</div> ";
+              "</div> " +
+              "</div>";
               
       $('.new-release-entry').append(html)
-      $('.new-release-editable').editable();
       $('.new-release-editable').editable('show', false);
-      $('.hidden-field').show();
+     
       bindClick();
       setRequired();
     }
@@ -189,6 +179,9 @@ $(document).ready(function() {
     
     $('#new-release-save').click(function() {
       $('.editableform').submit();
+      var region = $('.new-release-entry #region_id').text();
+      var launch_date = $('.new-release-entry #launch_date').text();
+      var medium = $('.new-release-entry #medium_id').text();
       $('.new-release-editable').editable('submit', {
         url : '/releases',
         ajaxOptions : {
@@ -197,24 +190,23 @@ $(document).ready(function() {
         },
         success : function(data, config) {
           if (data && data.id) {
-            //record created, response like {"id": 2}
-            //change editable options
-            $(this).editable('option', 'pk', data.id);
-            $(this).editable('option', 'url', '/releases/' + data.id);
-            $(this).editable('option', 'type', 'put');
-  
-            //remove unsaved class
-            $(this).removeClass('editable-unsaved');
-  
-            $(this).removeClass('new-release-editable');
-            $(this).addClass('editable');
+           
+           var html = "<div class='panel panel-default'> " +
+                        "<div class='panel-body'> " +
+                          generateReleaseRowHTML("Region", region) +
+                          generateReleaseRowHTML("Launch Date", launch_date) +
+                          generateReleaseRowHTML("Format", medium) +
+                          generateReleaseRowHTML("Countdown", "<span class='date' data-launch-date='" + launch_date + "'></span>") +
+                        "</div> " +
+                      "</div>";
+            
+            $('.new-release-entry').html(html);
+           
+           dateToCountdown();
             //show messages
             var msg = 'Your contribution has been submitted for approval.';
             $('#msg').addClass('alert-success').addClass('alert').removeClass('alert-danger').html(msg).show();
   
-            //hide new release button
-            $('#new-release-save').remove();
-            
             $('.new-release-entry').removeClass('new-release-entry');
             $('#release-list').append('<div class="new-release-entry"></div>');
             
@@ -238,7 +230,7 @@ $(document).ready(function() {
     });
     
     $('#new-product-save').click(function() {
-      value = $('.editable-container').find('input').first().val();
+      var value = $('.editable-container').find('input').first().val();
       $('.editableform').submit();
       $('.new-product-editable').editable('submit', {
         url : '/products',
@@ -277,4 +269,17 @@ $(document).ready(function() {
       });
     });
   };
+  
+  function generateReleaseRowHTML(label, content) {
+    var html = "<div class='row'> " +
+                "<div class='col-sm-3 dark-color'> " +
+                  label +
+                  ": " +  
+                "</div> " +
+                "<div class='col-sm-9'> " +
+                  content + 
+                "</div> " +
+              "</div>";
+    return html;
+  }
 });
