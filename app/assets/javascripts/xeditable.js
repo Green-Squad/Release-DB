@@ -22,16 +22,13 @@ $(document).ready(function() {
     $('.new-release-entry').html('');
     
     if($('.hidden-field:hidden').size()) {
-      console.log("show")
       $('.hidden-field').show();  
     } else {
-      console.log("hide")
       $('.hidden-field').hide();
     }
 
     e.stopPropagation();
   });
-  
 
   $('.editable').last().on('shown', function(e, editable) {
     if (arguments.length == 2) {
@@ -39,10 +36,6 @@ $(document).ready(function() {
         $('.editable-container').find('input').first().focus();
       }, 0);
     }
-  });
-
-  $('#category_id').select2({
-    id: function(data) { return data.text; }
   });
 
   $('#add-release-button').click(function() {
@@ -54,6 +47,7 @@ $(document).ready(function() {
                     "data-pk='' " +
                     "data-source='/regions.json' " + 
                     "data-showbuttons='false' " + 
+                    "data-placeholder='Region' "  +
                     "data-send='auto'>" +
                   "</span>" +
                   " / ";
@@ -62,6 +56,7 @@ $(document).ready(function() {
                 "data-type='text' " +  
                 "data-pk='' " +  
                 "data-placeholder='Release Date' " +
+                "data-showbuttons='false' " + 
                 "data-send='auto'>" + 
               "</span> " + 
               " / ";
@@ -69,6 +64,7 @@ $(document).ready(function() {
                 "id='medium_id' " + 
                 "data-type='select' " +  
                 "data-pk='' " +  
+                "data-placeholder='Format' " +
                 "data-source='/media.json?category_id=" + 
                   $('.temp_information').data('category-id') +
                 "' " +  
@@ -79,8 +75,9 @@ $(document).ready(function() {
       html += "<span class='hidden-field'> / " +
                 "<span class='new-release-editable source' " + 
                   "id='source' " + 
-                  "data-placeholder='source' " +
+                  "data-placeholder='Source URL' " +
                   "data-type='text' " + 
+                  "data-showbuttons='false' " + 
                   "data-pk=''>" + 
                 "</span>" + 
               "</span> ";
@@ -142,7 +139,7 @@ $(document).ready(function() {
                     " / " +
                     "<span class='new-product-editable' " +
                       "id='category_id' " +
-                      "data-type='select2' " +
+                      "data-type='select' " +
                       "data-pk='' " +
                       "data-placeholder='Category' " +
                       "data-id='1233' " +
@@ -184,6 +181,7 @@ $(document).ready(function() {
   bindClick = function() {
     
     $('#new-release-save').click(function() {
+      $('.editableform').submit();
       $('.new-release-editable').editable('submit', {
         url : '/releases',
         ajaxOptions : {
