@@ -75,12 +75,4 @@ class ProductsController < ApplicationController
     allowed_names = ['name', 'category_id']
     allowed_names.include? col_name
   end
-  
-  def get_date(date)
-    begin
-      Date.parse(date)
-    rescue
-      Date.parse("1001-01-01")
-    end
-  end
 end

@@ -21,7 +21,7 @@
         <% release_collection.each do |release| %>
         <%= link_to product_path(release[:slug]), class: "list-group-item" do %>
         <%=
-          truncate(release[:name], length: 25) +
+          truncate(release[:name], length: 23) +
           content_tag(:span, release[:launch_date], class: 'badge')
         %>
         <% end %>
