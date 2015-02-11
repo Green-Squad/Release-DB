@@ -1,25 +1,29 @@
 class SearchController < ApplicationController
   require 'open-uri'
-  
+
   def index
   end
 
   def show
   end
-  
+
   def search
-    search = params[:search].downcase.delete(' ')
-    product = Product.where("LOWER(REPLACE(name, ' ', '')) LIKE ?", "#{search}%").order(:name).first
-    if product
-      redirect_to product_url(product)
-    else
-      begin
-        @google_request = JSON.load(open(ENV['SEARCH_URL'] + params[:search]));
-        @total_results = @google_request["queries"]["request"][0]["totalResults"].to_i
-        render "index"
-      rescue
-        redirect_to "https://www.google.com/?#q=site:dev.release.kyledornblaser.com+#{params[:search]}"
+    if params[:search]
+      search = params[:search].downcase.delete(' ')
+      product = Product.where("LOWER(REPLACE(name, ' ', '')) LIKE ?", "#{search}%").order(:name).first
+      if product
+        redirect_to product_url(product)
+      else
+        begin
+          @google_request = JSON.load(open(ENV['SEARCH_URL'] + params[:search]));
+          @total_results = @google_request["queries"]["request"][0]["totalResults"].to_i
+          render "index"
+        rescue
+          redirect_to "https://www.google.com/?#q=site:dev.release.kyledornblaser.com+#{params[:search]}"
+        end
       end
+    else
+      redirect_to root_url
     end
   end
 
