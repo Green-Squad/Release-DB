@@ -7,8 +7,8 @@
   <h3 style="margin: 0 0 10px 0;">Find a release date</h3>
 
   <%= form_tag(search_path, method: "get", class: 'form-horizontal', id: "search-form-home") do %>
-    <span class="home-search-box"> <%= text_field_tag :search, params[:search], placeholder: "e.g. Grand Theft Auto", class: "form-control", id: 'search-box-home' %> </span>
-    <span class="home-search-button"> <%= submit_tag "Search", class: "btn btn-primary" %> </span>
+  <span class="home-search-box"> <%= text_field_tag :search, params[:search], placeholder: "e.g. Grand Theft Auto", class: "form-control", id: 'search-box-home' %> </span>
+  <span class="home-search-button"> <%= submit_tag "Search", class: "btn btn-primary" %> </span>
   <% end %>
 </div>
 
@@ -23,9 +23,9 @@
         <% release_collection.each do |release| %>
         <%= link_to product_path(release[:slug]), class: "list-group-item" do %>
         <%=
-          truncate(release[:name], length: 23) +
+ truncate(release[:name], length: 23) +
           content_tag(:span, release[:launch_date], class: 'badge')
-        %>
+%>
         <% end %>
         <% end %>
       </div>
@@ -33,3 +33,23 @@
   </div>
   <% end %>
 </div>
+</div>
+
+<div class="row color-header no-padding">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <h4 class="about-content">
+        This is a product page.  You can add or edit any release that you wish!  Any contributions will be submitted for approval.
+      </h4>
+    </div>
+    <div class="col-md-12">
+      <%= image_tag "screenshot.png", class: "screenshot" %>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+      <h4 class="about-content">
+        There is no need to register or sign up, so get started right away! Use the search box to find your first product.
+      </h4>
+    </div>
+  </div>
+</div>
+<div>

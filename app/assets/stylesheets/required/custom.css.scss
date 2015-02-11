@@ -46,6 +46,10 @@
   margin: 0 !important;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 #close-new-release {
   padding: 10px 10px 0 10px;
   cursor: pointer;
@@ -238,4 +242,15 @@ html.turbolinks-progress-bar::before {
 
 .search-url {
   color: #1C9845;
+}
+
+// About
+
+.screenshot {
+  max-width: 100%;
+}
+
+.about-content {
+  margin: 50px;
+  line-height: 1.5em;
 }
