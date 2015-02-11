@@ -143,6 +143,17 @@
   padding: 30px 0;
 }
 
+.footer-right{text-align:left}
+@media (min-width: 768px){
+   .footer-right{text-align:left}
+ }
+@media (min-width: 992px){
+  .footer-right{text-align:right}
+}
+@media (min-width: 1200px)
+{.footer-right{text-align:right}
+}
+
 // Ads
 
 .top-ad-box {
