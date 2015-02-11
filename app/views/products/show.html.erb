@@ -1,3 +1,5 @@
+<% provide(:title, "#{@product.name} Release Dates" )%>
+<% provide(:description, "Find release dates for #{@product.name} (#{@product.category.name}). Submit your own release dates for people to view." )%>
 <% provide(:body_class, @product.category.name.downcase)%>
 
 <h1 class="page-name page-header">

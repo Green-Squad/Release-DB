@@ -1,3 +1,6 @@
+<% provide(:title, "Search Results for '#{@google_request["queries"]["request"][0]["searchTerms"]}'" )%>
+<% provide(:description, "Search Results for '#{@google_request["queries"]["request"][0]["searchTerms"]}'" )%>
+
 <h1 class="page-name page-header">
   <span style="display:table-cell;vertical-align: middle;width:100%;">
     Search Results for '<%= @google_request["queries"]["request"][0]["searchTerms"] %>'

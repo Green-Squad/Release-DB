@@ -1,3 +1,5 @@
+<% provide(:title, "#{@category.name.singularize} Release Dates" )%>
+<% provide(:description, "Find release dates for #{@category.name}." )%>
 <% provide(:body_class, @category.name.downcase)%>
 <% provide(:page_name, @category.name) %>
 
