@@ -34,7 +34,8 @@ $(document).ready(function() {
   $('#add-release-button').click(function() {
     if ($('.new-release-entry').empty()) {
       var html =  "<div class='panel panel-default'> " +
-                  "<div class='panel-body'> " +
+                  "<div><span id='close-new-release' class='pull-right fa fa-times-circle'></span><div class='clearfix'></div></div>" +
+                  "<div class='panel-body' style='padding-top:0;'> " +
                   generateReleaseRowHTML("Region","<span class='new-release-editable' " + 
                     "id='region_id' " + 
                     "data-type='select' " + 
@@ -176,6 +177,10 @@ $(document).ready(function() {
   }
 
   bindClick = function() {
+    
+    $('#close-new-release').click(function(){
+      $('.new-release-entry').html("");
+    });
     
     $('#new-release-save').click(function() {
       $('.editableform').submit();
