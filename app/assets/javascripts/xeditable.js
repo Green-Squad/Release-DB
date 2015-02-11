@@ -208,7 +208,7 @@ $(document).ready(function() {
             $('#msg').addClass('alert-success').addClass('alert').removeClass('alert-danger').html(msg).show();
   
             $('.new-release-entry').removeClass('new-release-entry');
-            $('#release-list').append('<div class="new-release-entry"></div>');
+            $('#release-list').prepend('<div class="new-release-entry"></div>');
             
           } else if (data && data.errors) {
             //server-side validation error, response like {"errors": {"username": "username already exist"} }
