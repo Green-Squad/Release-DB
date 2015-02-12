@@ -40,7 +40,7 @@ group :development, :test do
 end
 
 group :production do
-  'dotenv-deployment'
+  gem 'dotenv-deployment'
 end
 
 group :test do

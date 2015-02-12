@@ -107,6 +107,8 @@ GEM
     coffee-script-source (1.9.0)
     debug_inspector (0.0.2)
     dotenv (1.0.2)
+    dotenv-deployment (0.2.0)
+      dotenv (~> 1.0)
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
     erubis (2.7.0)
@@ -289,6 +291,7 @@ DEPENDENCIES
   bundler
   coffee-rails (~> 4.0.0)
   devise!
+  dotenv-deployment
   dotenv-rails
   font-awesome-rails
   friendly_id (~> 5.1.0)
