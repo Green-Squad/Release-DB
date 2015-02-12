@@ -88,7 +88,7 @@
             </span>
           </div>
         </div>
-        <% if get_date(release.launch_date.launch_date) > Time.now %>
+        <% if release.launch_date.date > Time.now %>
           <div class="row">
             <div class="col-sm-3 dark-color">
               Countdown: 
@@ -102,7 +102,7 @@
         <% end %>
         <div class="row">
           <div class="col-sm-3 dark-color">
-            <%= get_date(release.launch_date.launch_date) < Time.now ? "Buy:" : "Preorder:" %> 
+            <%= release.launch_date.date < Time.now ? "Buy:" : "Preorder:" %> 
           </div>
           <div class="col-sm-9">
             <%= link_to "Amazon", affiliate_link(@product.name, release.medium.name, @product.category.name) %>

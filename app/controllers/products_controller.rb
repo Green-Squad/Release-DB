@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
     
     @releases = @product.releases
     @releases = @releases.to_a
-    @releases.sort! { |a,b| get_date(b.launch_date.launch_date) <=> get_date(a.launch_date.launch_date) }
+    @releases.sort! { |a,b| b.launch_date.date <=> a.launch_date.date }
   end
 
   # POST /products

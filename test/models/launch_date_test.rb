@@ -25,4 +25,30 @@ class LaunchDateTest < ActiveSupport::TestCase
     @one.update_attributes(launch_date: "")
     assert_equal launch_date, LaunchDate.find(launch_dates(:one).id).launch_date
   end
+  
+  test "should get ruby date object" do
+    # All of the dates should equal February 11, 2015
+    date = Date.parse("2015-02-11")
+    
+    launch_date = LaunchDate.create(launch_date: "2015-02-11")
+    assert_equal date, launch_date.date
+    
+    launch_date = LaunchDate.create(launch_date: "Feb 11, 2015")
+    assert_equal date, launch_date.date
+    
+    launch_date = LaunchDate.create(launch_date: "February 11, 2015")
+    assert_equal date, launch_date.date
+    
+    launch_date = LaunchDate.create(launch_date: "2015/02/11")
+    assert_equal date, launch_date.date
+
+    launch_date = LaunchDate.create(launch_date: "Feb 11 2015")
+    assert_equal date, launch_date.date
+  end
+  
+  test "should get ruby date object from beginning of time" do
+    launch_date = LaunchDate.create(launch_date: "Fake Date")
+    date = Date.parse("-9999999-01-01")
+    assert_equal date, launch_date.date
+  end
 end

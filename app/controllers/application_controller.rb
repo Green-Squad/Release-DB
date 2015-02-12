@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :get_date
   def user_for_paper_trail
     admin_user_signed_in? ? current_admin_user.id : 'guest'
   end
@@ -26,14 +25,6 @@ class ApplicationController < ActionController::Base
     object.destroy
     end
     object.class.name.constantize.paper_trail_off!
-  end
-
-  def get_date(date)
-    begin
-      Date.parse(date)
-    rescue
-      Date.parse("1001-01-01")
-    end
   end
 
   private
