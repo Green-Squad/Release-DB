@@ -19,7 +19,8 @@ $(document).ready(function() {
     } else {
       $('.hidden-field').hide();
     }
-
+    
+    setRequired();
     e.stopPropagation();
   });
 
@@ -157,6 +158,7 @@ $(document).ready(function() {
         $('.new-product-editable').editable();
         $('.new-product-editable').editable('show', false);
         bindClick();
+        setRequired();
       }
       setTimeout(function() {
         $('.editable-container').find('input').first().focus();
@@ -169,7 +171,7 @@ $(document).ready(function() {
 });
 
   setRequired = function() {
-    $('.source').editable('option', 'validate', function(v) {
+    $('.editable').editable('option', 'validate', function(v) {
       if($.trim(v) == '') {
           return 'This field is required';
       }
@@ -221,22 +223,15 @@ $(document).ready(function() {
           }
         },
         error : function(errors) {
-          var msg = '';
-          if (errors && errors.responseText) {//ajax error, errors = xhr object
-            msg = errors.responseText;
-          } else {//validation error (client-side or server-side)
-            $.each(errors, function(k, v) {
-              msg += k + ": " + v + "<br>";
-            });
-          }
+          var msg = "There was an error saving your release.";
           $('#msg').removeClass('alert-success').addClass('alert').addClass('alert-danger').html(msg).show();
         }
       });
     });
     
     $('#new-product-save').click(function() {
-      var value = $('.editable-container').find('input').first().val();
       $('.editableform').submit();
+      var product = $('.new-product-entry #name').text();
       $('.new-product-editable').editable('submit', {
         url : '/products',
         ajaxOptions : {
@@ -245,7 +240,7 @@ $(document).ready(function() {
         },
         success : function(data, config) {
           if (data && data.id) {
-            $('.new-product-entry').html(value);
+            $('.new-product-entry').html(product);
             
             //show messages
             var msg = 'Your contribution has been submitted for approval.';
@@ -261,14 +256,7 @@ $(document).ready(function() {
           }
         },
         error : function(errors) {
-          var msg = '';
-          if (errors && errors.responseText) {//ajax error, errors = xhr object
-            msg = errors.responseText;
-          } else {//validation error (client-side or server-side)
-            $.each(errors, function(k, v) {
-              msg += k + ": " + v + "<br>";
-            });
-          }
+          var msg = "There was an error saving your product.";
           $('#msg').removeClass('alert-success').addClass('alert').addClass('alert-danger').html(msg).show();
         }
       });
