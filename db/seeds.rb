@@ -176,6 +176,23 @@ tv_seasons.each do |season|
   Release.where(medium: medium_record, region: global_region, launch_date: launch_date_record, product: product, source: season[:source]).first_or_create
 end
 
+# Shoes
+shoe_category = Category.where(name: "Shoes").first
+shoes = [
+          { name: "Air Jordan 10 Retro Dust/Metallic Gold-Black-Retro", launch_date: "2015-02-15", medium: "Online", source: "http://solecollector.com/Sneakers/Release-Dates/air-jordan-10-retro-remastered-cement-grey-black-tropical-teal/"},
+          { name: "Nike Air Flight Huarache White/White-Ice", launch_date: "2015-02-15", medium: "Online", source: "http://solecollector.com/Sneakers/Release-Dates/nike-air-flight-huarache-white-white-ice/"},
+          { name: "Nike KD VII Premium White/Metallic Gold-Pink Pow-Pure Platinum", launch_date: "2015-02-19", medium: "Online", source: "http://solecollector.com/Sneakers/Release-Dates/nike-kd-vii-premium-white-metallic-gold-pink-power-pure-platinum/"},
+          { name: "Air Jordan 4 Retro LS Black/Black-Cool Grey", launch_date: "2015-02-21", medium: "Online", source: "http://solecollector.com/Sneakers/Release-Dates/air-jordan-4-retro-remastered-black-black-cool-grey/"},
+          { name: "Nike Kobe X Black/Black-Persian Violet-Volt", launch_date: "2015-02-21", medium: "Online", source: "http://solecollector.com/Sneakers/Release-Dates/nike-kobe-x-black-black-persian-violet-volt/"},
+          { name: "Nike LeBron 12 Merlot/Metallic Silver-Pink Flash-Volt", launch_date: "2015-28-02", medium: "Online", source: "http://solecollector.com/Sneakers/Release-Dates/nike-lebron-12-deep-burgundy-volt-pink-flash/"}
+        ]
+shoes.each do |shoe|
+  product = Product.where(name: shoe[:name], category: shoe_category).first_or_create
+  launch_date_record = LaunchDate.where(launch_date: shoe[:launch_date]).first_or_create
+  medium_record = Medium.where(name: shoe[:medium]).first
+  Release.where(medium: medium_record, region: global_region, launch_date: launch_date_record, product: product, source: shoe[:source]).first_or_create
+end
+
 Product.paper_trail_on!
 Release.paper_trail_on!
 
