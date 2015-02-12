@@ -13,7 +13,7 @@
 
       <div class="container">
         <div>
-          <%= link_to "Release Date", defined?(root_path) ? root_path : "#", class: "navbar-brand" %>
+          <%= link_to "Release DB", defined?(root_path) ? root_path : "#", class: "navbar-brand" %>
           <i class="fa fa-search pull-right" id="search-icon"></i>
         </div>
         <%= render partial: "elements/navbar" %>
@@ -50,7 +50,8 @@
         Developed by Kyle Dornblaser and Jordan Smith</span>
       </div>
       <div class="col-md-6 footer-right">
-        <%= link_to "GitHub", "https://github.com/Green-Squad/Release-Date" %>
+        <%= link_to "GitHub", "https://github.com/Green-Squad/Release-Date" %> | 
+        Hosted with <%= link_to "Digital Ocean", "https://www.digitalocean.com/?refcode=83576fa0931f" %>
       </div>
     </footer>
   </body>
