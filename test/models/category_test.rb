@@ -17,4 +17,15 @@ class CategoryTest < ActiveSupport::TestCase
     @one.update_attributes(name: "")
     assert_equal name, Category.find(categories(:one).id).name
   end
+  
+  test "should return categories in a sentence" do
+    categories = Category.all
+    sentence = Category.sentence
+    categories.each do |category|
+      assert sentence.include? category.name
+    end
+    
+    assert_equal categories.count - 1, sentence.count(",")
+    assert sentence.include? "and"
+  end
 end

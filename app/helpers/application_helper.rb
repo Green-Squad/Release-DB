@@ -12,13 +12,4 @@ module ApplicationHelper
       page_title
     end
   end
-  
-  def get_categories()
-    categories = Category.all
-    category_array = []
-    categories.each do |category|
-      category_array << category.name
-    end
-    category_array.to_sentence
-  end
 end
