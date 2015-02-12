@@ -39,6 +39,10 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
+group :production do
+  'dotenv-deployment'
+end
+
 group :test do
   gem 'minitest-reporters'
   gem 'mini_backtrace'
