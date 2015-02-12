@@ -7,6 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'open-uri'
 
+Rails.cache.delete('region_list')
+Rails.cache.delete('home_page_upcoming_releases')
+
 Medium.delete_all
 Product.delete_all
 Category.delete_all

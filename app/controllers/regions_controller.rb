@@ -15,6 +15,7 @@ class RegionsController < ApplicationController
       other_regions.each do |region|
         regions_array << region
       end
+      regions_array
     end
 
     
