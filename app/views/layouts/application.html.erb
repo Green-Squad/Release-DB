@@ -45,14 +45,6 @@
       <% end %>
       <%= yield %>
     </div>
-    <footer class="container" id="footer">
-      <div class="col-md-6">
-        Developed by Kyle Dornblaser and Jordan Smith</span>
-      </div>
-      <div class="col-md-6 footer-right">
-        <%= link_to "GitHub", "https://github.com/Green-Squad/Release-Date" %> | 
-        Hosted with <%= link_to "Digital Ocean", "https://www.digitalocean.com/?refcode=83576fa0931f" %>
-      </div>
-    </footer>
+    <%= render partial: "elements/footer" %>
   </body>
 </html>
