@@ -254,3 +254,9 @@ html.turbolinks-progress-bar::before {
   margin: 50px;
   line-height: 1.5em;
 }
+
+
+/* 404 Page */
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
