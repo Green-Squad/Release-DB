@@ -44,14 +44,6 @@ class ProductsControllerTest < ActionController::TestCase
     #assert_equal 'application/json', response.headers['Content-Type']
   end
 
-  test "should destroy product" do
-    assert_difference('Product.count', -1) do
-      delete :destroy, id: @product
-    end
-
-    assert_redirected_to products_path
-  end
-
   #test "should not create product" do
   #  assert_no_difference('Product.count') do
   #    post :create, product: { name: "", category_id: categories(:one).id }
@@ -60,6 +52,6 @@ class ProductsControllerTest < ActionController::TestCase
 
   test "should not update product" do
     patch :update, id: @product, product: { name: "" }.to_json, format: :json
-    assert_equal "Halo", Product.find(products(:one)).name
+    assert_equal "Halo", Product.find(products(:one).id).name
   end
 end

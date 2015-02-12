@@ -52,16 +52,6 @@ class ReleasesController < ApplicationController
     Release.paper_trail_on!
   end
 
-  # DELETE /releases/1
-  # DELETE /releases/1.json
-  def destroy
-    @release.destroy
-    respond_to do |format|
-      format.html { redirect_to releases_url, notice: 'Release was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

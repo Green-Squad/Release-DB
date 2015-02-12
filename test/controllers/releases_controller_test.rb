@@ -32,12 +32,4 @@ class ReleasesControllerTest < ActionController::TestCase
   #patch "/releases/#{@release.id}", { name: "source", value: "amazon.com" }, format: :json
   #assert_equal "google.com", Release.find(releases(:one)).source
   #end
-
-  test "should destroy release" do
-    assert_difference('Release.count', -1) do
-      delete :destroy, id: @release
-    end
-
-    assert_redirected_to releases_path
-  end
 end
