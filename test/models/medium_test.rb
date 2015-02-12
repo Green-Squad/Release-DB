@@ -14,6 +14,6 @@ class MediumTest < ActiveSupport::TestCase
   test "should not update medium" do
     name = @one.name
     @one.update_attributes(name: "", category_id: categories(:one).id)
-    assert_equal name, Medium.find(media(:one)).name
+    assert_equal name, Medium.find(media(:one).id).name
   end
 end

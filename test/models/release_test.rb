@@ -14,6 +14,6 @@ class ReleaseTest < ActiveSupport::TestCase
   test "should not update release" do
     release_one = @one.attributes
     @one.update_attributes(product: nil, launch_date_id: "", medium_id: "", region_id: "")
-    assert_equal release_one, Release.find(releases(:one)).attributes
+    assert_equal release_one, Release.find(releases(:one).id).attributes
   end
 end

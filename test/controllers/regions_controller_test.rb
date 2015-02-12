@@ -6,13 +6,8 @@ class RegionsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index
+    get :index, :format => :json
     assert_response :success
     assert_not_nil assigns(:regions)
-  end
-
-  test "should show region" do
-    get :show, id: @region
-    assert_response :success
   end
 end

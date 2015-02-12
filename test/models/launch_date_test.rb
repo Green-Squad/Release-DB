@@ -23,6 +23,6 @@ class LaunchDateTest < ActiveSupport::TestCase
   test "should not update launch date" do
     launch_date = @one.launch_date
     @one.update_attributes(launch_date: "")
-    assert_equal launch_date, LaunchDate.find(launch_dates(:one)).launch_date
+    assert_equal launch_date, LaunchDate.find(launch_dates(:one).id).launch_date
   end
 end

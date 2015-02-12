@@ -8,12 +8,6 @@ class ReleasesControllerTest < ActionController::TestCase
     @request_headers = { "Content-Type" => "application/json" }
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:releases)
-  end
-
   #test "should rollback create release as guest" do
   #  assert_no_difference('Release.count') do
   #    post :create, { product_id: products(:one).id, launch_date: "asdfasdf", medium_id: media(:one).id, region_id: regions(:one).id, source: "bing.com"}.to_json, format: :json
@@ -26,11 +20,6 @@ class ReleasesControllerTest < ActionController::TestCase
   #    post :create, @release_params, format: :json
   #  end
   #end
-
-  test "should show release" do
-    get :show, id: @release
-    assert_response :success
-  end
 
   #test "should update release as admin" do
   #sign_in @admin_user

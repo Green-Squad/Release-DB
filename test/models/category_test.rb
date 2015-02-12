@@ -15,6 +15,6 @@ class CategoryTest < ActiveSupport::TestCase
   test "should not update category" do
     name = @one.name
     @one.update_attributes(name: "")
-    assert_equal name, Category.find(categories(:one)).name
+    assert_equal name, Category.find(categories(:one).id).name
   end
 end

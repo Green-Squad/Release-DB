@@ -1,12 +1,6 @@
 class SearchController < ApplicationController
   require 'open-uri'
 
-  def index
-  end
-
-  def show
-  end
-
   def search
     if params[:search]
       search = params[:search].downcase.delete(' ')

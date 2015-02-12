@@ -14,6 +14,6 @@ class RegionTest < ActiveSupport::TestCase
   test "should not update region" do
     name = @one.name
     @one.update_attributes(name: "")
-    assert_equal name, Region.find(regions(:one)).name
+    assert_equal name, Region.find(regions(:one).id).name
   end
 end
