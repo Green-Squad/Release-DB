@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     
-    # Rails.cache.delete('home_page_upcoming_releases')
+    #Rails.cache.delete('home_page_upcoming_releases')
     @release_types = Rails.cache.fetch("home_page_upcoming_releases", :expires_in => 1.hour) do
       game_releases = coming_soon_releases("Games")
       movie_releases = coming_soon_releases("Movies")
@@ -17,12 +17,12 @@ class HomeController < ApplicationController
   def releases_to_array(releases)
     releases_array = []
     releases.each do |release|
-      releases_array << {name: release.product.name, slug: release.product.slug, launch_date: release.launch_date.launch_date}
+      releases_array << {name: release[0], slug: release[1], launch_date: release[2]}
     end
     releases_array  
   end
   
   def coming_soon_releases(category)
-    Release.joins(:launch_date, :product).where("launch_dates.launch_date > ? AND products.category_id = ?", Time.now, Category.where(name: category).first.id).order("launch_dates.launch_date").take(5)
+    Release.joins(:launch_date, :product).distinct.where("launch_dates.launch_date > ? AND products.category_id = ?", Time.now, Category.where(name: category).first.id).order("launch_dates.launch_date, products.name").pluck("products.name, products.slug, launch_dates.launch_date").take(5)
   end
 end
