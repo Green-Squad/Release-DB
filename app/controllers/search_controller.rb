@@ -13,7 +13,7 @@ class SearchController < ApplicationController
           @total_results = @google_request["queries"]["request"][0]["totalResults"].to_i
           render "index"
         rescue
-          redirect_to "https://www.google.com/?#q=site:dev.release.kyledornblaser.com+#{params[:search]}"
+          redirect_to "https://www.google.com/?#q=site:www.releasedb.com+#{params[:search]}"
         end
       end
     else
