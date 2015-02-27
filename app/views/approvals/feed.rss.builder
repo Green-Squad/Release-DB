@@ -22,12 +22,12 @@ xml.rss :version => '2.0' do
         xml.link 'http://www.releasedb.com/admin'
         xml.guid pending_approval.id
         
-        content = "<p>There is a new pending #{pending_approval.item_type.downcase}.</p>"
+        description = "<p>There is a new pending #{pending_approval.item_type.downcase}.</p>"
         reified.attributes.each do |name, value|
-          content += "<p>#{name}: #{value}</p>"
+          description += "<p>#{name}: #{value}</p>"
         end
         
-        xml.content content, type: :html
+        xml.description description
       end
     end
   end
