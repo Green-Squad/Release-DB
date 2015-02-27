@@ -30,6 +30,7 @@ gem 'turbolinks'
 gem 'tzinfo-data'
 gem 'uglifier',                 '>= 1.3.0'
 gem 'validates_formatting_of'
+gem 'whenever'
 
 group :development do
   gem 'spring'
