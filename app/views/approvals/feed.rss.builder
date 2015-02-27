@@ -27,7 +27,9 @@ xml.rss :version => '2.0' do
           description += "<p>#{name}: #{value}</p>"
         end
         
-        xml.description description
+        xml.description do
+          xml.cdata! description
+        end
       end
     end
   end
