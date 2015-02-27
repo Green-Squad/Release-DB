@@ -1,5 +1,5 @@
 class ApprovalsController < ApplicationController
-  before_action :authenticate_admin_user!
+  before_action :authenticate_admin_user!, except: :feed
   
   def approve
     version = PaperTrail::Version.find_by_id(params[:id])
@@ -25,5 +25,12 @@ class ApprovalsController < ApplicationController
       flash[:info] = "Version #{params[:id]} has been rejected"
     end
     redirect_to admin_dashboard_url
+  end
+  
+  def feed
+    @pending_approvals = PaperTrail::Version.where("(item_type = ? OR item_type = ?) AND status = 'pending'", 'Product', 'Release').order(:created_at)
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
   end
 end
