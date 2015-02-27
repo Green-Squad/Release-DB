@@ -31,6 +31,7 @@ class ApprovalsController < ApplicationController
     @pending_approvals = PaperTrail::Version.where("(item_type = ? OR item_type = ?) AND status = 'pending'", 'Product', 'Release').order(created_at: :desc)
     respond_to do |format|
       format.rss { render :layout => false }
+      format.atom { render :layout => false }
     end
   end
 end

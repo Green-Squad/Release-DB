@@ -29,7 +29,7 @@ xml.rss :version => '2.0' do
           content += "<p>#{name}: #{value} </p>"
         end
         
-        xml.description description
+        #xml.description description
         xml.tag! 'content:encoded' do
           xml.cdata! content
         end
