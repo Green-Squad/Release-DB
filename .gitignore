@@ -21,6 +21,7 @@
 
 /public/.htaccess
 /public/.htpasswd
+/public/sitemap.xml.gz
 
 *.rbc
 capybara-*.html
